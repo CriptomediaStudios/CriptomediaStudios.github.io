@@ -43,7 +43,7 @@ ApplicationMain.init = function() {
 	if(total == 0) ApplicationMain.start();
 };
 ApplicationMain.main = function() {
-	ApplicationMain.config = { build : "14", company : "VicenteFleitas", file : "CriptomediaWeb", fps : 60, name : "CriptomediaWeb", orientation : "", packageName : "CriptomediaWeb", version : "1.0.0", windows : [{ allowHighDPI : true, antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : "{}", resizable : true, stencilBuffer : true, title : "CriptomediaWeb", vsync : false, width : 0, x : null, y : null}]};
+	ApplicationMain.config = { build : "41", company : "VicenteFleitas", file : "CriptomediaWeb", fps : 60, name : "CriptomediaStudios", orientation : "", packageName : "CriptomediaWeb", version : "1.0.0", windows : [{ allowHighDPI : true, antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : "{}", resizable : true, stencilBuffer : true, title : "CriptomediaStudios", vsync : false, width : 0, x : null, y : null}]};
 };
 ApplicationMain.start = function() {
 	lime_Assets.initialize();
@@ -1271,32 +1271,33 @@ openfl_display_Sprite.prototype = $extend(openfl_display_DisplayObjectContainer.
 var Main = function() {
 	openfl_display_Sprite.call(this);
 	var header = new openfl_display_Sprite();
-	header.get_graphics().beginFill(5419993);
-	header.get_graphics().drawRect(0,0,720,100);
+	header.get_graphics().beginFill(7109257);
+	header.get_graphics().drawRect(0,0,720,this.stage.stageHeight);
 	header.get_graphics().endFill();
 	this.addChild(header);
-	header.set_x(0);
+	header.set_x(this.stage.stageWidth * .5 - header.get_width() * .5);
 	header.set_y(0);
+	var title = new openfl_text_TextField();
+	title.setTextFormat(new openfl_text_TextFormat(null,28,16777215));
+	title.set_text("Criptomedia Studios");
+	title.set_width(title.get_textWidth() + 20);
+	title.set_x(this.stage.stageWidth * .5 - title.get_width() * .5);
+	title.set_y(10);
+	this.addChild(title);
 	var body = new openfl_display_Sprite();
-	body.get_graphics().beginFill(15004158);
-	body.get_graphics().drawRect(0,0,720,300);
+	body.get_graphics().beginFill(14344161);
+	body.get_graphics().drawRect(0,30,720,this.stage.stageHeight - 90);
 	body.get_graphics().endFill();
 	this.addChild(body);
-	body.set_x(0);
-	body.set_y(100);
+	body.set_x(this.stage.stageWidth * .5 - body.get_width() * .5);
+	body.set_y(30);
 	var foot = new openfl_display_Sprite();
-	foot.get_graphics().beginFill(12972023);
-	foot.get_graphics().drawRect(0,0,720,100);
+	foot.get_graphics().beginFill(11253687);
+	foot.get_graphics().drawRect(0,0,720,60);
 	foot.get_graphics().endFill();
 	this.addChild(foot);
-	foot.set_x(0);
-	foot.set_y(400);
-	var title = new openfl_text_TextField();
-	title.set_text("Criptomedia Studios");
-	title.set_textColor(16777215);
-	title.set_x(360 - title.get_width() * .5);
-	title.set_y(50);
-	this.addChild(title);
+	foot.set_x(this.stage.stageWidth * .5 - foot.get_width() * .5);
+	foot.set_y(this.stage.stageHeight - foot.get_height());
 };
 $hxClasses["Main"] = Main;
 Main.__name__ = ["Main"];
@@ -2844,7 +2845,7 @@ var lime_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 335032;
+	this.version = 933623;
 };
 $hxClasses["lime.AssetCache"] = lime_AssetCache;
 lime_AssetCache.__name__ = ["lime","AssetCache"];
