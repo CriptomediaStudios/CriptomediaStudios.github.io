@@ -43,7 +43,7 @@ ApplicationMain.init = function() {
 	if(total == 0) ApplicationMain.start();
 };
 ApplicationMain.main = function() {
-	ApplicationMain.config = { build : "41", company : "VicenteFleitas", file : "CriptomediaWeb", fps : 60, name : "CriptomediaStudios", orientation : "", packageName : "CriptomediaWeb", version : "1.0.0", windows : [{ allowHighDPI : true, antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : "{}", resizable : true, stencilBuffer : true, title : "CriptomediaStudios", vsync : false, width : 0, x : null, y : null}]};
+	ApplicationMain.config = { build : "65", company : "VicenteFleitas", file : "CriptomediaWeb", fps : 60, name : "CriptomediaStudios", orientation : "", packageName : "CriptomediaWeb", version : "1.0.0", windows : [{ allowHighDPI : true, antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : "{}", resizable : true, stencilBuffer : true, title : "CriptomediaStudios", vsync : false, width : 0, x : null, y : null}]};
 };
 ApplicationMain.start = function() {
 	lime_Assets.initialize();
@@ -207,6 +207,7 @@ var openfl_display_DisplayObject = function() {
 	this.__worldTransform = new openfl_geom_Matrix();
 	this.__worldColorTransform = new openfl_geom_ColorTransform();
 	this.__renderTransform = new openfl_geom_Matrix();
+	this.__worldVisible = true;
 	this.set_name("instance" + ++openfl_display_DisplayObject.__instanceCount);
 };
 $hxClasses["openfl.display.DisplayObject"] = openfl_display_DisplayObject;
@@ -424,14 +425,38 @@ openfl_display_DisplayObject.prototype = $extend(openfl_events_EventDispatcher.p
 		}
 		if(maskGraphics != null) this.__updateMask(maskGraphics);
 		if(!transformOnly) {
+			this.__worldTransformChanged = !this.__worldTransform.equals(this.__worldTransformCache);
+			if(this.__worldTransformCache == null) this.__worldTransformCache = this.__worldTransform.clone(); else this.__worldTransformCache.copyFrom(this.__worldTransform);
+			var worldClip = null;
 			if(!this.__worldColorTransform.__equals(this.get_transform().get_colorTransform())) this.__worldColorTransform = this.get_transform().get_colorTransform().__clone();
 			var __parent;
 			if(this.parent != null) __parent = this.parent; else __parent = this.__renderParent;
 			if(__parent != null) {
-				this.__worldAlpha = this.get_alpha() * __parent.__worldAlpha;
-				this.__worldColorTransform.__combine(__parent.__worldColorTransform);
-				if(this.get_blendMode() == null || this.get_blendMode() == 10) this.__blendMode = __parent.__blendMode;
-			} else this.__worldAlpha = this.get_alpha();
+				var worldVisible = __parent.__worldVisible && this.get_visible();
+				this.__worldVisibleChanged = this.__worldVisible != worldVisible;
+				this.__worldVisible = worldVisible;
+				var worldAlpha = this.get_alpha() * __parent.__worldAlpha;
+				this.__worldAlphaChanged = this.__worldAlpha != worldAlpha;
+				this.__worldAlpha = worldAlpha;
+				if(__parent.__worldClip != null) worldClip = __parent.__worldClip.clone();
+				if(this.get_scrollRect() != null) {
+					var bounds = this.get_scrollRect().clone();
+					bounds.__transform(bounds,this.__worldTransform);
+					if(worldClip != null) bounds.__contract(worldClip.x - this.get_scrollRect().x,worldClip.y - this.get_scrollRect().y,worldClip.width,worldClip.height);
+					worldClip = bounds;
+				}
+			} else {
+				this.__worldAlpha = this.get_alpha();
+				this.__worldVisibleChanged = this.__worldVisible != this.get_visible();
+				this.__worldVisible = this.get_visible();
+				this.__worldAlphaChanged = this.__worldAlpha != this.get_alpha();
+				if(this.get_scrollRect() != null) {
+					worldClip = this.get_scrollRect().clone();
+					worldClip.__transform(worldClip,this.__worldTransform);
+				}
+			}
+			this.__worldClipChanged = worldClip == null && this.__worldClip != null || worldClip != null && !worldClip.equals(this.__worldClip);
+			this.__worldClip = worldClip;
 			if(updateChildren && this.__renderDirty) this.__renderDirty = false;
 		}
 	}
@@ -673,6 +698,10 @@ openfl_display_DisplayObject.prototype = $extend(openfl_events_EventDispatcher.p
 			if(!this.__transformDirty) {
 				this.__transformDirty = true;
 				openfl_display_DisplayObject.__worldTransformDirty++;
+			}
+			if(!this.__renderDirty) {
+				this.__renderDirty = true;
+				openfl_display_DisplayObject.__worldRenderDirty++;
 			}
 		}
 		return this.__scrollRect = value;
@@ -1298,6 +1327,14 @@ var Main = function() {
 	this.addChild(foot);
 	foot.set_x(this.stage.stageWidth * .5 - foot.get_width() * .5);
 	foot.set_y(this.stage.stageHeight - foot.get_height());
+	var iframe = window.document.createElement("iframe");
+	iframe.width = "420";
+	iframe.height = "315";
+	iframe.src = "https://www.youtube.com/embed/A5n1nx8Yr7U";
+	var domSprite = new openfl_display_DOMSprite(iframe);
+	domSprite.set_x(this.stage.stageWidth * .5 - 210. + 130);
+	domSprite.set_y(80);
+	this.addChild(domSprite);
 };
 $hxClasses["Main"] = Main;
 Main.__name__ = ["Main"];
@@ -2845,7 +2882,7 @@ var lime_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 933623;
+	this.version = 66721;
 };
 $hxClasses["lime.AssetCache"] = lime_AssetCache;
 lime_AssetCache.__name__ = ["lime","AssetCache"];
@@ -3763,7 +3800,7 @@ lime__$backend_html5_HTML5Window.prototype = {
 		this.setWidth = this.parent.__width;
 		this.setHeight = this.parent.__height;
 		this.parent.id = lime__$backend_html5_HTML5Window.windowID++;
-		if(js_Boot.__instanceof(this.element,HTMLCanvasElement)) this.canvas = this.element; else this.canvas = window.document.createElement("canvas");
+		if(js_Boot.__instanceof(this.element,HTMLCanvasElement)) this.canvas = this.element; else this.div = window.document.createElement("div");
 		if(this.canvas != null) {
 			var style = this.canvas.style;
 			style.setProperty("-webkit-transform","translateZ(0)",null);
@@ -21470,6 +21507,29 @@ openfl_display__$CapsStyle_CapsStyle_$Impl_$.toString = function(value) {
 		return null;
 	}
 };
+var openfl_display_DOMSprite = function(element) {
+	openfl_display_Sprite.call(this);
+	this.__element = element;
+};
+$hxClasses["openfl.display.DOMSprite"] = openfl_display_DOMSprite;
+openfl_display_DOMSprite.__name__ = ["openfl","display","DOMSprite"];
+openfl_display_DOMSprite.__super__ = openfl_display_Sprite;
+openfl_display_DOMSprite.prototype = $extend(openfl_display_Sprite.prototype,{
+	__renderDOM: function(renderSession) {
+		if(this.stage != null && this.__worldVisible && this.__renderable) {
+			if(!this.__active) {
+				openfl__$internal_renderer_dom_DOMRenderer.initializeElement(this,this.__element,renderSession);
+				this.__active = true;
+			}
+			openfl__$internal_renderer_dom_DOMRenderer.applyStyle(this,renderSession,true,true,true);
+		} else if(this.__active) {
+			renderSession.element.removeChild(this.__element);
+			this.__active = false;
+		}
+		openfl_display_Sprite.prototype.__renderDOM.call(this,renderSession);
+	}
+	,__class__: openfl_display_DOMSprite
+});
 var openfl_display_DirectRenderer = function(type) {
 	if(type == null) type = "DirectRenderer";
 	openfl_display_DisplayObject.call(this);
@@ -22395,6 +22455,17 @@ openfl_display_Loader.prototype = $extend(openfl_display_DisplayObjectContainer.
 });
 var openfl_display_OpenGLView = function() {
 	openfl_display_DirectRenderer.call(this,"OpenGLView");
+	if(!this.__initialized) {
+		this.__canvas = window.document.createElement("canvas");
+		this.__canvas.width = openfl_Lib.current.stage.stageWidth;
+		this.__canvas.height = openfl_Lib.current.stage.stageHeight;
+		var $window = openfl_Lib.current.stage.window;
+		var options = { alpha : false, premultipliedAlpha : false, antialias : false, depth : Object.prototype.hasOwnProperty.call($window.config,"depthBuffer")?$window.config.depthBuffer:true, stencil : Object.prototype.hasOwnProperty.call($window.config,"stencilBuffer")?$window.config.stencilBuffer:false};
+		this.__context = this.__canvas.getContext("webgl",options);
+		if(this.__context == null) this.__context = this.__canvas.getContext("experimental-webgl",options);
+		lime_graphics_opengl_GL.context = this.__context;
+		this.__initialized = true;
+	}
 };
 $hxClasses["openfl.display.OpenGLView"] = openfl_display_OpenGLView;
 openfl_display_OpenGLView.__name__ = ["openfl","display","OpenGLView"];
@@ -22437,6 +22508,16 @@ openfl_display_OpenGLView.prototype = $extend(openfl_display_DirectRenderer.prot
 			renderSession.blendModeManager.setBlendMode(null);
 			if(this.__render != null) this.__render(rect);
 		}
+	}
+	,set_width: function(value) {
+		openfl_display_DirectRenderer.prototype.set_width.call(this,value);
+		this.__canvas.width = value | 0;
+		return value;
+	}
+	,set_height: function(value) {
+		openfl_display_DirectRenderer.prototype.set_height.call(this,value);
+		this.__canvas.height = value | 0;
+		return value;
 	}
 	,__class__: openfl_display_OpenGLView
 });
@@ -24066,10 +24147,14 @@ openfl_display_Stage.prototype = $extend(openfl_display_DisplayObjectContainer.p
 		} else if(openfl_display_DisplayObject.__worldTransformDirty > 0 || this.__dirty || openfl_display_DisplayObject.__worldRenderDirty > 0) {
 			openfl_display_DisplayObjectContainer.prototype.__update.call(this,false,updateChildren,maskGrahpics);
 			if(updateChildren) {
+				this.__wasDirty = true;
 				openfl_display_DisplayObject.__worldTransformDirty = 0;
 				openfl_display_DisplayObject.__worldRenderDirty = 0;
 				this.__dirty = false;
 			}
+		} else if(this.__wasDirty) {
+			openfl_display_DisplayObjectContainer.prototype.__update.call(this,false,updateChildren,maskGrahpics);
+			if(updateChildren) this.__wasDirty = false;
 		}
 	}
 	,get_color: function() {
@@ -29475,16 +29560,6 @@ openfl_text_TextField.prototype = $extend(openfl_display_InteractiveObject.proto
 			this.__selectionIndex = this.__caretIndex;
 		}
 		if(this.stage != null) {
-			this.stage.window.backend.setEnableTextEvents(true);
-			if(!this.__inputEnabled) {
-				this.stage.window.backend.setEnableTextEvents(true);
-				if(!this.stage.window.onTextInput.has($bind(this,this.window_onTextInput))) {
-					this.stage.window.onTextInput.add($bind(this,this.window_onTextInput));
-					this.stage.window.onKeyDown.add($bind(this,this.window_onKeyDown));
-				}
-				this.__inputEnabled = true;
-				this.__startCursorTimer();
-			}
 		}
 	}
 	,__stopCursorTimer: function() {
@@ -29498,13 +29573,6 @@ openfl_text_TextField.prototype = $extend(openfl_display_InteractiveObject.proto
 		}
 	}
 	,__stopTextInput: function() {
-		if(this.__inputEnabled && this.stage != null) {
-			this.stage.window.backend.setEnableTextEvents(false);
-			this.stage.window.onTextInput.remove($bind(this,this.window_onTextInput));
-			this.stage.window.onKeyDown.remove($bind(this,this.window_onKeyDown));
-			this.__inputEnabled = false;
-			this.__stopCursorTimer();
-		}
 	}
 	,__updateLayout: function() {
 		if(this.__layoutDirty) {
@@ -29648,101 +29716,6 @@ openfl_text_TextField.prototype = $extend(openfl_display_InteractiveObject.proto
 			this.__layoutDirty = true;
 		}
 		this.__isHTML = true;
-		if(this.__div == null) {
-			value = new EReg("<br>","g").replace(value,"\n");
-			value = new EReg("<br/>","g").replace(value,"\n");
-			var text = value;
-			var entities = [["quot","\""],["apos","'"],["amp","&"],["lt","<"],["gt",">"]];
-			var _g1 = 0;
-			var _g = entities.length;
-			while(_g1 < _g) {
-				var i = _g1++;
-				text = new EReg("&" + entities[i][0] + ";","g").replace(text,entities[i][1]);
-			}
-			value = text;
-			var segments = value.split("<");
-			if(segments.length == 1) {
-				value = new EReg("<.*?>","g").replace(value,"");
-				if(this.__textEngine.textFormatRanges.length > 1) this.__textEngine.textFormatRanges.splice(1,this.__textEngine.textFormatRanges.length - 1);
-				var range = this.__textEngine.textFormatRanges[0];
-				range.format = this.__textFormat;
-				range.start = 0;
-				range.end = value.length;
-				return this.__textEngine.text = value;
-			} else {
-				this.__textEngine.textFormatRanges.splice(0,this.__textEngine.textFormatRanges.length);
-				value = "";
-				var formatStack = [this.__textFormat.clone()];
-				var sub;
-				var noLineBreak = false;
-				var _g2 = 0;
-				while(_g2 < segments.length) {
-					var segment = segments[_g2];
-					++_g2;
-					if(segment == "") continue;
-					var isClosingTag = HxOverrides.substr(segment,0,1) == "/";
-					var tagEndIndex = segment.indexOf(">");
-					var start = tagEndIndex + 1;
-					var spaceIndex = segment.indexOf(" ");
-					var tagName = segment.substring(isClosingTag?1:0,spaceIndex > -1 && spaceIndex < tagEndIndex?spaceIndex:tagEndIndex);
-					var format;
-					if(isClosingTag) {
-						formatStack.pop();
-						format = formatStack[formatStack.length - 1].clone();
-						if(tagName.toLowerCase() == "p" && this.__textEngine.textFormatRanges.length > 0) {
-							value += "\n";
-							noLineBreak = true;
-						}
-						if(start < segment.length) {
-							sub = HxOverrides.substr(segment,start,null);
-							this.__textEngine.textFormatRanges.push(new openfl__$internal_text_TextFormatRange(format,value.length,value.length + sub.length));
-							value += sub;
-							noLineBreak = false;
-						}
-					} else {
-						format = formatStack[formatStack.length - 1].clone();
-						if(tagEndIndex > -1) {
-							var _g11 = tagName.toLowerCase();
-							switch(_g11) {
-							case "p":
-								if(this.__textEngine.textFormatRanges.length > 0 && !noLineBreak) value += "\n";
-								var alignEreg = new EReg("align=\"([^\"]+)","i");
-								if(alignEreg.match(segment)) format.align = openfl_text__$TextFormatAlign_TextFormatAlign_$Impl_$.fromString(alignEreg.matched(1).toLowerCase());
-								break;
-							case "font":
-								var faceEreg = new EReg("face=\"([^\"]+)","i");
-								if(faceEreg.match(segment)) format.font = faceEreg.matched(1);
-								var colorEreg = new EReg("color=\"#([^\"]+)","i");
-								if(colorEreg.match(segment)) format.color = Std.parseInt("0x" + colorEreg.matched(1));
-								var sizeEreg = new EReg("size=\"([^\"]+)","i");
-								if(sizeEreg.match(segment)) format.size = Std.parseInt(sizeEreg.matched(1));
-								break;
-							case "b":
-								format.bold = true;
-								break;
-							case "u":
-								format.underline = true;
-								break;
-							case "i":case "em":
-								format.italic = true;
-								break;
-							}
-							formatStack.push(format);
-							if(start < segment.length) {
-								sub = segment.substring(start);
-								this.__textEngine.textFormatRanges.push(new openfl__$internal_text_TextFormatRange(format,value.length,value.length + sub.length));
-								value += sub;
-								noLineBreak = false;
-							}
-						} else {
-							this.__textEngine.textFormatRanges.push(new openfl__$internal_text_TextFormatRange(format,value.length,value.length + segment.length));
-							value += segment;
-							noLineBreak = false;
-						}
-					}
-				}
-			}
-		}
 		return this.__textEngine.text = value;
 	}
 	,get_length: function() {
