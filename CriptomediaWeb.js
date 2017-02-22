@@ -43,7 +43,7 @@ ApplicationMain.init = function() {
 	if(total == 0) ApplicationMain.start();
 };
 ApplicationMain.main = function() {
-	ApplicationMain.config = { build : "65", company : "VicenteFleitas", file : "CriptomediaWeb", fps : 60, name : "CriptomediaStudios", orientation : "", packageName : "CriptomediaWeb", version : "1.0.0", windows : [{ allowHighDPI : true, antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : "{}", resizable : true, stencilBuffer : true, title : "CriptomediaStudios", vsync : false, width : 0, x : null, y : null}]};
+	ApplicationMain.config = { build : "103", company : "VicenteFleitas", file : "CriptomediaWeb", fps : 60, name : "CriptomediaStudios", orientation : "", packageName : "CriptomediaWeb", version : "1.0.0", windows : [{ allowHighDPI : true, antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : "{}", resizable : true, stencilBuffer : true, title : "CriptomediaStudios", vsync : false, width : 0, x : null, y : null}]};
 };
 ApplicationMain.start = function() {
 	lime_Assets.initialize();
@@ -1298,9 +1298,10 @@ openfl_display_Sprite.prototype = $extend(openfl_display_DisplayObjectContainer.
 	,__properties__: $extend(openfl_display_DisplayObjectContainer.prototype.__properties__,{get_graphics:"get_graphics"})
 });
 var Main = function() {
+	this.space = 20;
 	openfl_display_Sprite.call(this);
 	var header = new openfl_display_Sprite();
-	header.get_graphics().beginFill(7109257);
+	header.get_graphics().beginFill(2240831);
 	header.get_graphics().drawRect(0,0,720,this.stage.stageHeight);
 	header.get_graphics().endFill();
 	this.addChild(header);
@@ -1314,14 +1315,14 @@ var Main = function() {
 	title.set_y(10);
 	this.addChild(title);
 	var body = new openfl_display_Sprite();
-	body.get_graphics().beginFill(14344161);
+	body.get_graphics().beginFill(3426654);
 	body.get_graphics().drawRect(0,30,720,this.stage.stageHeight - 90);
 	body.get_graphics().endFill();
 	this.addChild(body);
 	body.set_x(this.stage.stageWidth * .5 - body.get_width() * .5);
 	body.set_y(30);
 	var foot = new openfl_display_Sprite();
-	foot.get_graphics().beginFill(11253687);
+	foot.get_graphics().beginFill(6783135);
 	foot.get_graphics().drawRect(0,0,720,60);
 	foot.get_graphics().endFill();
 	this.addChild(foot);
@@ -1332,9 +1333,16 @@ var Main = function() {
 	iframe.height = "315";
 	iframe.src = "https://www.youtube.com/embed/A5n1nx8Yr7U";
 	var domSprite = new openfl_display_DOMSprite(iframe);
-	domSprite.set_x(this.stage.stageWidth * .5 - 210. + 130);
+	domSprite.set_x(this.stage.stageWidth * .5 - 60. - this.space);
 	domSprite.set_y(80);
 	this.addChild(domSprite);
+	var title_headline = new openfl_text_TextField();
+	title_headline.setTextFormat(new openfl_text_TextFormat(null,28,16777215,true));
+	title_headline.set_text("GoldenBits");
+	title_headline.set_width(title_headline.get_textWidth() + 20);
+	title_headline.set_x(this.stage.stageWidth * .5 - 360. + this.space);
+	title_headline.set_y(80);
+	this.addChild(title_headline);
 };
 $hxClasses["Main"] = Main;
 Main.__name__ = ["Main"];
@@ -2882,7 +2890,7 @@ var lime_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 66721;
+	this.version = 637249;
 };
 $hxClasses["lime.AssetCache"] = lime_AssetCache;
 lime_AssetCache.__name__ = ["lime","AssetCache"];
