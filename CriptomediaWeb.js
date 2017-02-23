@@ -21,6 +21,10 @@ ApplicationMain.create = function() {
 	ApplicationMain.preloader.create(ApplicationMain.config);
 	var urls = [];
 	var types = [];
+	urls.push("img/64.png");
+	types.push("IMAGE");
+	urls.push("img/Greenlight.png");
+	types.push("IMAGE");
 	urls.push("img/Logo4.png");
 	types.push("IMAGE");
 	if(ApplicationMain.config.assetsPrefix != null) {
@@ -45,7 +49,7 @@ ApplicationMain.init = function() {
 	if(total == 0) ApplicationMain.start();
 };
 ApplicationMain.main = function() {
-	ApplicationMain.config = { build : "200", company : "VicenteFleitas", file : "CriptomediaWeb", fps : 60, name : "CriptomediaStudios", orientation : "", packageName : "CriptomediaStudios", version : "1.0.0", windows : [{ allowHighDPI : true, antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : "{}", resizable : true, stencilBuffer : true, title : "CriptomediaStudios", vsync : false, width : 0, x : null, y : null}]};
+	ApplicationMain.config = { build : "221", company : "VicenteFleitas", file : "CriptomediaWeb", fps : 60, name : "CriptomediaStudios", orientation : "", packageName : "CriptomediaStudios", version : "1.0.0", windows : [{ allowHighDPI : true, antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : "{}", resizable : true, stencilBuffer : true, title : "CriptomediaStudios", vsync : false, width : 0, x : null, y : null}]};
 };
 ApplicationMain.start = function() {
 	lime_Assets.initialize();
@@ -1338,19 +1342,17 @@ var Main = function() {
 	this.addChild(body);
 	body.set_x(this.stage.stageWidth * .5 - body.get_width() * .5);
 	body.set_y(120);
-	var iframe = window.document.createElement("iframe");
-	iframe.width = "420";
-	iframe.height = "315";
-	iframe.src = "https://www.youtube.com/embed/A5n1nx8Yr7U";
-	var domSprite = new openfl_display_DOMSprite(iframe);
-	domSprite.set_x(this.stage.stageWidth * .5 - (420 - this.width_page * .5) - this.space);
-	domSprite.set_y(170);
-	this.addChild(domSprite);
+	var logo_gb = new openfl_display_Bitmap(openfl_Assets.getBitmapData("img/64.png"));
+	logo_gb.set_scaleX(.5);
+	logo_gb.set_scaleY(.5);
+	logo_gb.set_x(this.stage.stageWidth * .5 - this.width_page * .5 + this.space);
+	logo_gb.set_y(170);
+	this.addChild(logo_gb);
 	var title_headline = new openfl_text_TextField();
 	title_headline.setTextFormat(new openfl_text_TextFormat("_sans",28,16777215));
 	title_headline.set_text("GoldenBits");
 	title_headline.set_width(title_headline.get_textWidth() + 20);
-	title_headline.set_x(this.stage.stageWidth * .5 - this.width_page * .5 + this.space);
+	title_headline.set_x(this.stage.stageWidth * .5 - this.width_page * .5 + this.space * 2 + logo_gb.get_width());
 	title_headline.set_y(170);
 	this.addChild(title_headline);
 	var description_headline = new openfl_text_TextField();
@@ -1362,6 +1364,23 @@ var Main = function() {
 	description_headline.set_x(this.stage.stageWidth * .5 - 360. + this.space);
 	description_headline.set_y(210);
 	this.addChild(description_headline);
+	var greenlight_bitmap = new openfl_display_Bitmap(openfl_Assets.getBitmapData("img/Greenlight.png"));
+	var greenlight_btn = new openfl_display_Sprite();
+	greenlight_btn.buttonMode = true;
+	greenlight_btn.addChild(greenlight_bitmap);
+	greenlight_btn.set_scaleX(.7);
+	greenlight_btn.set_scaleY(.7);
+	greenlight_btn.set_x(this.stage.stageWidth * .5 - this.width_page * .5 + this.space);
+	greenlight_btn.set_y(400);
+	this.addChild(greenlight_btn);
+	var iframe = window.document.createElement("iframe");
+	iframe.width = "420";
+	iframe.height = "315";
+	iframe.src = "https://www.youtube.com/embed/A5n1nx8Yr7U";
+	var domSprite = new openfl_display_DOMSprite(iframe);
+	domSprite.set_x(this.stage.stageWidth * .5 - (420 - this.width_page * .5) - this.space);
+	domSprite.set_y(170);
+	this.addChild(domSprite);
 	var foot = new openfl_display_Sprite();
 	foot.get_graphics().beginFill(6783135);
 	foot.get_graphics().drawRect(0,0,this.width_page,60);
@@ -1469,6 +1488,12 @@ var DefaultAssetLibrary = function() {
 	this.className = new haxe_ds_StringMap();
 	lime_AssetLibrary.call(this);
 	var id;
+	id = "img/64.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
+	id = "img/Greenlight.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
 	id = "img/Logo4.png";
 	this.path.set(id,id);
 	this.type.set(id,"IMAGE");
@@ -2957,7 +2982,7 @@ var lime_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 915354;
+	this.version = 261816;
 };
 $hxClasses["lime.AssetCache"] = lime_AssetCache;
 lime_AssetCache.__name__ = ["lime","AssetCache"];
