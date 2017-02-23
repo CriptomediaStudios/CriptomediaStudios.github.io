@@ -45,7 +45,7 @@ ApplicationMain.init = function() {
 	if(total == 0) ApplicationMain.start();
 };
 ApplicationMain.main = function() {
-	ApplicationMain.config = { build : "187", company : "VicenteFleitas", file : "CriptomediaWeb", fps : 60, name : "CriptomediaStudios", orientation : "", packageName : "CriptomediaStudios", version : "1.0.0", windows : [{ allowHighDPI : true, antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : "{}", resizable : true, stencilBuffer : true, title : "CriptomediaStudios", vsync : false, width : 0, x : null, y : null}]};
+	ApplicationMain.config = { build : "200", company : "VicenteFleitas", file : "CriptomediaWeb", fps : 60, name : "CriptomediaStudios", orientation : "", packageName : "CriptomediaStudios", version : "1.0.0", windows : [{ allowHighDPI : true, antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : "{}", resizable : true, stencilBuffer : true, title : "CriptomediaStudios", vsync : false, width : 0, x : null, y : null}]};
 };
 ApplicationMain.start = function() {
 	lime_Assets.initialize();
@@ -1323,11 +1323,11 @@ var Main = function() {
 	title.set_x(this.stage.stageWidth * .5 - title.get_width() * .5);
 	title.set_y(80);
 	this.addChild(title);
-	var twitter_btn = new lib_Button();
+	var twitter_btn = new lib_Button(1952511,"t",32,32,"https://twitter.com/criptomedia");
 	twitter_btn.set_x(this.stage.stageWidth * .5 + this.width_page * .5 - twitter_btn._w - this.space);
 	twitter_btn.set_y(90);
 	this.addChild(twitter_btn);
-	var facebook_btn = new lib_Button(3889560,"f");
+	var facebook_btn = new lib_Button(3889560,"f",32,32,"https://www.facebook.com/Criptomedia");
 	facebook_btn.set_x(this.stage.stageWidth * .5 + this.width_page * .5 - facebook_btn._w - this.space);
 	facebook_btn.set_y(50);
 	this.addChild(facebook_btn);
@@ -2914,16 +2914,16 @@ js_html_compat_Uint8Array._subarray = function(start,end) {
 	a.byteOffset = start;
 	return a;
 };
-var lib_Button = function(c,s,h,w) {
+var lib_Button = function(c,s,h,w,url) {
+	if(url == null) url = "";
 	if(w == null) w = 32;
 	if(h == null) h = 32;
-	if(s == null) s = "t";
-	if(c == null) c = 1952511;
 	openfl_display_Sprite.call(this);
 	this.color = c;
 	this.str = s;
 	this._h = h;
 	this._w = w;
+	this._url = url;
 	this.addEventListener("addedToStage",$bind(this,this.onStage));
 };
 $hxClasses["lib.Button"] = lib_Button;
@@ -2940,6 +2940,7 @@ lib_Button.prototype = $extend(openfl_display_Sprite.prototype,{
 		title.set_selectable(false);
 		title.setTextFormat(new openfl_text_TextFormat("_sans",28,16777215,true,null,null,null,null,0));
 		title.set_width(this._w);
+		title.set_height(this._h);
 		title.set_text(this.str);
 		title.set_x(0);
 		title.set_y(0);
@@ -2947,16 +2948,7 @@ lib_Button.prototype = $extend(openfl_display_Sprite.prototype,{
 		this.addEventListener("mouseUp",$bind(this,this.mouseRelease));
 	}
 	,mouseRelease: function(e) {
-		var _g = this.str;
-		switch(_g) {
-		case "t":
-			openfl_Lib.getURL(new openfl_net_URLRequest("https://twitter.com/criptomedia"),"_blank");
-			break;
-		case "f":
-			openfl_Lib.getURL(new openfl_net_URLRequest("https://www.facebook.com/Criptomedia"),"_blank");
-			break;
-		default:
-		}
+		if(this._url != "") openfl_Lib.getURL(new openfl_net_URLRequest(this._url),"_blank");
 	}
 	,__class__: lib_Button
 });
@@ -2965,7 +2957,7 @@ var lime_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 190846;
+	this.version = 915354;
 };
 $hxClasses["lime.AssetCache"] = lime_AssetCache;
 lime_AssetCache.__name__ = ["lime","AssetCache"];
