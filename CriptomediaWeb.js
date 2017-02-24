@@ -21,6 +21,16 @@ ApplicationMain.create = function() {
 	ApplicationMain.preloader.create(ApplicationMain.config);
 	var urls = [];
 	var types = [];
+	urls.push("img/1.png");
+	types.push("IMAGE");
+	urls.push("img/2.png");
+	types.push("IMAGE");
+	urls.push("img/3.png");
+	types.push("IMAGE");
+	urls.push("img/4.png");
+	types.push("IMAGE");
+	urls.push("img/5.png");
+	types.push("IMAGE");
 	urls.push("img/64.png");
 	types.push("IMAGE");
 	urls.push("img/Greenlight.png");
@@ -49,7 +59,7 @@ ApplicationMain.init = function() {
 	if(total == 0) ApplicationMain.start();
 };
 ApplicationMain.main = function() {
-	ApplicationMain.config = { build : "221", company : "VicenteFleitas", file : "CriptomediaWeb", fps : 60, name : "CriptomediaStudios", orientation : "", packageName : "CriptomediaStudios", version : "1.0.0", windows : [{ allowHighDPI : true, antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : "{}", resizable : true, stencilBuffer : true, title : "CriptomediaStudios", vsync : false, width : 0, x : null, y : null}]};
+	ApplicationMain.config = { build : "310", company : "VicenteFleitas", file : "CriptomediaWeb", fps : 60, name : "CriptomediaStudios", orientation : "", packageName : "CriptomediaStudios", version : "1.0.0", windows : [{ allowHighDPI : true, antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : "{}", resizable : true, stencilBuffer : true, title : "CriptomediaStudios", vsync : false, width : 0, x : null, y : null}]};
 };
 ApplicationMain.start = function() {
 	lime_Assets.initialize();
@@ -1381,6 +1391,10 @@ var Main = function() {
 	domSprite.set_x(this.stage.stageWidth * .5 - (420 - this.width_page * .5) - this.space);
 	domSprite.set_y(170);
 	this.addChild(domSprite);
+	var screenShots = new lib_ScreenScroll();
+	screenShots.set_x(this.stage.stageWidth * .5 - screenShots.width_mask * .5);
+	screenShots.set_y(512);
+	this.addChild(screenShots);
 	var foot = new openfl_display_Sprite();
 	foot.get_graphics().beginFill(6783135);
 	foot.get_graphics().drawRect(0,0,this.width_page,60);
@@ -1488,6 +1502,21 @@ var DefaultAssetLibrary = function() {
 	this.className = new haxe_ds_StringMap();
 	lime_AssetLibrary.call(this);
 	var id;
+	id = "img/1.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
+	id = "img/2.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
+	id = "img/3.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
+	id = "img/4.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
+	id = "img/5.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
 	id = "img/64.png";
 	this.path.set(id,id);
 	this.type.set(id,"IMAGE");
@@ -2977,12 +3006,50 @@ lib_Button.prototype = $extend(openfl_display_Sprite.prototype,{
 	}
 	,__class__: lib_Button
 });
+var lib_ScreenScroll = function() {
+	this.height_mask = 118;
+	this.width_mask = 700;
+	openfl_display_Sprite.call(this);
+	this.addEventListener("addedToStage",$bind(this,this.onStage));
+};
+$hxClasses["lib.ScreenScroll"] = lib_ScreenScroll;
+lib_ScreenScroll.__name__ = ["lib","ScreenScroll"];
+lib_ScreenScroll.__super__ = openfl_display_Sprite;
+lib_ScreenScroll.prototype = $extend(openfl_display_Sprite.prototype,{
+	onStage: function(e) {
+		this.removeEventListener("addedToStage",$bind(this,this.onStage));
+		this.contenedor = new openfl_display_Sprite();
+		this.contenedor.get_graphics().beginFill(0);
+		this.contenedor.get_graphics().drawRect(0,0,this.width_mask,this.height_mask);
+		this.contenedor.get_graphics().endFill();
+		this.addChild(this.contenedor);
+		var _g = 0;
+		while(_g < 4) {
+			var i = _g++;
+			var foto = new openfl_display_Bitmap(openfl_Assets.getBitmapData("img/" + (i + 1) + ".png"));
+			foto.set_scaleX(.2);
+			foto.set_scaleY(.2);
+			this.contenedor.addChild(foto);
+			foto.set_x(144. * i + 25 * (i + 1));
+			foto.set_y(18);
+		}
+		var back = new lib_Button(6783135,"<",32,32);
+		back.set_y(37);
+		back.set_x(-16.);
+		this.addChild(back);
+		var forward = new lib_Button(6783135,">",32,32);
+		forward.set_y(37);
+		forward.set_x(684.);
+		this.addChild(forward);
+	}
+	,__class__: lib_ScreenScroll
+});
 var lime_AssetCache = function() {
 	this.enabled = true;
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 261816;
+	this.version = 447464;
 };
 $hxClasses["lime.AssetCache"] = lime_AssetCache;
 lime_AssetCache.__name__ = ["lime","AssetCache"];
