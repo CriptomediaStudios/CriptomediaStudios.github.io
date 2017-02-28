@@ -59,7 +59,7 @@ ApplicationMain.init = function() {
 	if(total == 0) ApplicationMain.start();
 };
 ApplicationMain.main = function() {
-	ApplicationMain.config = { build : "336", company : "VicenteFleitas", file : "CriptomediaWeb", fps : 60, name : "CriptomediaStudios", orientation : "", packageName : "CriptomediaStudios", version : "1.0.0", windows : [{ allowHighDPI : true, antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : "{}", resizable : true, stencilBuffer : true, title : "CriptomediaStudios", vsync : false, width : 0, x : null, y : null}]};
+	ApplicationMain.config = { build : "338", company : "VicenteFleitas", file : "CriptomediaWeb", fps : 60, name : "CriptomediaStudios", orientation : "", packageName : "CriptomediaStudios", version : "1.0.0", windows : [{ allowHighDPI : true, antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : "{}", resizable : true, stencilBuffer : true, title : "CriptomediaStudios", vsync : false, width : 0, x : null, y : null}]};
 };
 ApplicationMain.start = function() {
 	lime_Assets.initialize();
@@ -1837,13 +1837,22 @@ MobileInit.prototype = $extend(openfl_display_Sprite.prototype,{
 		logo.set_y(-10);
 		this.addChild(logo);
 		var facebook_btn = new lib_Button(3889560,"f",32,32,"https://www.facebook.com/Criptomedia");
-		facebook_btn.set_x(265);
-		facebook_btn.set_y(15);
+		facebook_btn.set_x(230);
+		facebook_btn.set_y(10);
 		this.addChild(facebook_btn);
 		var twitter_btn = new lib_Button(1952511,"t",32,32,"https://twitter.com/criptomedia");
 		twitter_btn.set_x(265);
-		twitter_btn.set_y(55);
+		twitter_btn.set_y(10);
 		this.addChild(twitter_btn);
+		var greenlight_bitmap = new openfl_display_Bitmap(openfl_Assets.getBitmapData("img/Greenlight.png"));
+		var greenlight_btn = new openfl_display_Sprite();
+		greenlight_btn.buttonMode = true;
+		greenlight_btn.addChild(greenlight_bitmap);
+		greenlight_btn.set_scaleX(.4);
+		greenlight_btn.set_scaleY(.4);
+		greenlight_btn.set_x(120);
+		greenlight_btn.set_y(40);
+		this.addChild(greenlight_btn);
 		var iframe = window.document.createElement("iframe");
 		iframe.width = "310";
 		iframe.height = "180";
@@ -1856,14 +1865,14 @@ MobileInit.prototype = $extend(openfl_display_Sprite.prototype,{
 		logo_gb.set_scaleX(.5);
 		logo_gb.set_scaleY(.5);
 		logo_gb.set_x(this.space);
-		logo_gb.set_y(300);
+		logo_gb.set_y(295);
 		this.addChild(logo_gb);
 		var title_headline = new openfl_text_TextField();
 		title_headline.setTextFormat(new openfl_text_TextFormat("_sans",28,16777215));
 		title_headline.set_text("GoldenBits");
 		title_headline.set_width(title_headline.get_textWidth() + 20);
 		title_headline.set_x(this.space * 2 + logo_gb.get_width());
-		title_headline.set_y(300);
+		title_headline.set_y(295);
 		this.addChild(title_headline);
 		var description_headline = new openfl_text_TextField();
 		description_headline.set_defaultTextFormat(new openfl_text_TextFormat("sans-serif",16,16777215));
@@ -1872,7 +1881,7 @@ MobileInit.prototype = $extend(openfl_display_Sprite.prototype,{
 		description_headline.set_width(310);
 		description_headline.set_height(140);
 		description_headline.set_x(this.space);
-		description_headline.set_y(325);
+		description_headline.set_y(323);
 		this.addChild(description_headline);
 	}
 	,__class__: MobileInit
@@ -3135,7 +3144,7 @@ var lime_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 939871;
+	this.version = 676162;
 };
 $hxClasses["lime.AssetCache"] = lime_AssetCache;
 lime_AssetCache.__name__ = ["lime","AssetCache"];
