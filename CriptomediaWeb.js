@@ -59,7 +59,7 @@ ApplicationMain.init = function() {
 	if(total == 0) ApplicationMain.start();
 };
 ApplicationMain.main = function() {
-	ApplicationMain.config = { build : "341", company : "VicenteFleitas", file : "CriptomediaWeb", fps : 60, name : "CriptomediaStudios", orientation : "", packageName : "CriptomediaStudios", version : "1.0.0", windows : [{ allowHighDPI : true, antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : "{}", resizable : true, stencilBuffer : true, title : "CriptomediaStudios", vsync : false, width : 0, x : null, y : null}]};
+	ApplicationMain.config = { build : "342", company : "VicenteFleitas", file : "CriptomediaWeb", fps : 60, name : "CriptomediaStudios", orientation : "", packageName : "CriptomediaStudios", version : "1.0.0", windows : [{ allowHighDPI : true, antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : "{}", resizable : true, stencilBuffer : true, title : "CriptomediaStudios", vsync : false, width : 0, x : null, y : null}]};
 };
 ApplicationMain.start = function() {
 	lime_Assets.initialize();
@@ -1837,13 +1837,17 @@ MobileInit.prototype = $extend(openfl_display_Sprite.prototype,{
 		logo.set_y(-10);
 		this.addChild(logo);
 		var facebook_btn = new lib_Button(3889560,"f",32,32,"https://www.facebook.com/Criptomedia");
-		facebook_btn.set_x(230);
+		facebook_btn.set_x(235);
 		facebook_btn.set_y(10);
 		this.addChild(facebook_btn);
 		var twitter_btn = new lib_Button(1952511,"t",32,32,"https://twitter.com/criptomedia");
-		twitter_btn.set_x(265);
+		twitter_btn.set_x(270);
 		twitter_btn.set_y(10);
 		this.addChild(twitter_btn);
+		var insta_btn = new lib_Button(15292752,"i",32,32,"https://www.instagram.com/criptomediastudios");
+		insta_btn.set_x(200);
+		insta_btn.set_y(10);
+		this.addChild(insta_btn);
 		var greenlight_bitmap = new openfl_display_Bitmap(openfl_Assets.getBitmapData("img/Greenlight.png"));
 		var greenlight_btn = new openfl_display_Sprite();
 		greenlight_btn.buttonMode = true;
@@ -3081,9 +3085,17 @@ lib_Button.__super__ = openfl_display_Sprite;
 lib_Button.prototype = $extend(openfl_display_Sprite.prototype,{
 	onStage: function(e) {
 		this.removeEventListener("addedToStage",$bind(this,this.onStage));
-		this.get_graphics().beginFill(this.color);
-		this.get_graphics().drawRoundRect(0,0,this._w,this._h,5,5);
-		this.get_graphics().endFill();
+		if(this.str == "i") {
+			this.get_graphics().beginFill(this.color);
+			this.get_graphics().lineStyle(2,16777215);
+			this.get_graphics().drawRoundRect(0,0,this._w,this._h,5,5);
+			this.get_graphics().drawCircle(this._w * .5,this._h * .5,3);
+			this.get_graphics().endFill();
+		} else {
+			this.get_graphics().beginFill(this.color);
+			this.get_graphics().drawRoundRect(0,0,this._w,this._h,5,5);
+			this.get_graphics().endFill();
+		}
 		this.buttonMode = true;
 		var title = new openfl_text_TextField();
 		title.set_selectable(false);
@@ -3144,7 +3156,7 @@ var lime_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 951768;
+	this.version = 827309;
 };
 $hxClasses["lime.AssetCache"] = lime_AssetCache;
 lime_AssetCache.__name__ = ["lime","AssetCache"];
