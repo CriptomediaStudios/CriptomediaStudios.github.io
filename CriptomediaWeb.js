@@ -59,7 +59,7 @@ ApplicationMain.init = function() {
 	if(total == 0) ApplicationMain.start();
 };
 ApplicationMain.main = function() {
-	ApplicationMain.config = { build : "332", company : "VicenteFleitas", file : "CriptomediaWeb", fps : 60, name : "CriptomediaStudios", orientation : "", packageName : "CriptomediaStudios", version : "1.0.0", windows : [{ allowHighDPI : true, antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : "{}", resizable : true, stencilBuffer : true, title : "CriptomediaStudios", vsync : false, width : 0, x : null, y : null}]};
+	ApplicationMain.config = { build : "334", company : "VicenteFleitas", file : "CriptomediaWeb", fps : 60, name : "CriptomediaStudios", orientation : "", packageName : "CriptomediaStudios", version : "1.0.0", windows : [{ allowHighDPI : true, antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : "{}", resizable : true, stencilBuffer : true, title : "CriptomediaStudios", vsync : false, width : 0, x : null, y : null}]};
 };
 ApplicationMain.start = function() {
 	lime_Assets.initialize();
@@ -1820,6 +1820,7 @@ _$List_ListIterator.prototype = {
 };
 Math.__name__ = ["Math"];
 var MobileInit = function() {
+	this.space = 5;
 	openfl_display_Sprite.call(this);
 	this.addEventListener("addedToStage",$bind(this,this.onStage));
 };
@@ -1833,7 +1834,7 @@ MobileInit.prototype = $extend(openfl_display_Sprite.prototype,{
 		logo.set_scaleX(.4);
 		logo.set_scaleY(.4);
 		logo.set_x(-5);
-		logo.set_y(-5);
+		logo.set_y(-10);
 		this.addChild(logo);
 		var facebook_btn = new lib_Button(3889560,"f",32,32,"https://www.facebook.com/Criptomedia");
 		facebook_btn.set_x(265);
@@ -1854,9 +1855,16 @@ MobileInit.prototype = $extend(openfl_display_Sprite.prototype,{
 		var logo_gb = new openfl_display_Bitmap(openfl_Assets.getBitmapData("img/64.png"));
 		logo_gb.set_scaleX(.5);
 		logo_gb.set_scaleY(.5);
-		logo_gb.set_x(0);
-		logo_gb.set_y(320);
+		logo_gb.set_x(this.space);
+		logo_gb.set_y(300);
 		this.addChild(logo_gb);
+		var title_headline = new openfl_text_TextField();
+		title_headline.setTextFormat(new openfl_text_TextFormat("_sans",28,16777215));
+		title_headline.set_text("GoldenBits");
+		title_headline.set_width(title_headline.get_textWidth() + 20);
+		title_headline.set_x(this.space * 2 + logo_gb.get_width());
+		title_headline.set_y(300);
+		this.addChild(title_headline);
 	}
 	,__class__: MobileInit
 });
@@ -3118,7 +3126,7 @@ var lime_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 681819;
+	this.version = 591352;
 };
 $hxClasses["lime.AssetCache"] = lime_AssetCache;
 lime_AssetCache.__name__ = ["lime","AssetCache"];
