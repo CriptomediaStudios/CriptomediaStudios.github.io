@@ -59,7 +59,7 @@ ApplicationMain.init = function() {
 	if(total == 0) ApplicationMain.start();
 };
 ApplicationMain.main = function() {
-	ApplicationMain.config = { build : "343", company : "VicenteFleitas", file : "CriptomediaWeb", fps : 60, name : "CriptomediaStudios", orientation : "", packageName : "CriptomediaStudios", version : "1.0.0", windows : [{ allowHighDPI : true, antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : "{}", resizable : true, stencilBuffer : true, title : "CriptomediaStudios", vsync : false, width : 0, x : null, y : null}]};
+	ApplicationMain.config = { build : "344", company : "VicenteFleitas", file : "CriptomediaWeb", fps : 60, name : "CriptomediaStudios", orientation : "", packageName : "CriptomediaStudios", version : "1.0.0", windows : [{ allowHighDPI : true, antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : "{}", resizable : true, stencilBuffer : true, title : "CriptomediaStudios", vsync : false, width : 0, x : null, y : null}]};
 };
 ApplicationMain.start = function() {
 	lime_Assets.initialize();
@@ -1836,7 +1836,7 @@ MobileInit.prototype = $extend(openfl_display_Sprite.prototype,{
 		logo.set_x(-5);
 		logo.set_y(-10);
 		this.addChild(logo);
-		var insta_btn = new lib_Button(15292752,"i",32,32,"https://www.instagram.com/criptomediastudios");
+		var insta_btn = new lib_Button(0,"i",32,32,"https://www.instagram.com/criptomediastudios");
 		insta_btn.set_x(190);
 		insta_btn.set_y(10);
 		this.addChild(insta_btn);
@@ -3088,8 +3088,9 @@ lib_Button.prototype = $extend(openfl_display_Sprite.prototype,{
 		if(this.str == "i") {
 			this.get_graphics().beginFill(this.color);
 			this.get_graphics().lineStyle(2,16777215);
-			this.get_graphics().drawRoundRect(0,0,this._w,this._h,5,5);
-			this.get_graphics().drawCircle(this._w * .5,this._h * .5,9);
+			this.get_graphics().drawRoundRect(0,0,this._w,this._h,10,10);
+			this.get_graphics().drawCircle(this._w * .5,this._h * .5,8);
+			this.get_graphics().drawCircle(23,4,2);
 			this.get_graphics().endFill();
 			this.str = "";
 		} else {
@@ -3157,7 +3158,7 @@ var lime_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 395790;
+	this.version = 769766;
 };
 $hxClasses["lime.AssetCache"] = lime_AssetCache;
 lime_AssetCache.__name__ = ["lime","AssetCache"];
