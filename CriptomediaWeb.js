@@ -59,7 +59,7 @@ ApplicationMain.init = function() {
 	if(total == 0) ApplicationMain.start();
 };
 ApplicationMain.main = function() {
-	ApplicationMain.config = { build : "338", company : "VicenteFleitas", file : "CriptomediaWeb", fps : 60, name : "CriptomediaStudios", orientation : "", packageName : "CriptomediaStudios", version : "1.0.0", windows : [{ allowHighDPI : true, antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : "{}", resizable : true, stencilBuffer : true, title : "CriptomediaStudios", vsync : false, width : 0, x : null, y : null}]};
+	ApplicationMain.config = { build : "339", company : "VicenteFleitas", file : "CriptomediaWeb", fps : 60, name : "CriptomediaStudios", orientation : "", packageName : "CriptomediaStudios", version : "1.0.0", windows : [{ allowHighDPI : true, antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : "{}", resizable : true, stencilBuffer : true, title : "CriptomediaStudios", vsync : false, width : 0, x : null, y : null}]};
 };
 ApplicationMain.start = function() {
 	lime_Assets.initialize();
@@ -1850,7 +1850,7 @@ MobileInit.prototype = $extend(openfl_display_Sprite.prototype,{
 		greenlight_btn.addChild(greenlight_bitmap);
 		greenlight_btn.set_scaleX(.4);
 		greenlight_btn.set_scaleY(.4);
-		greenlight_btn.set_x(120);
+		greenlight_btn.set_x(167);
 		greenlight_btn.set_y(40);
 		this.addChild(greenlight_btn);
 		var iframe = window.document.createElement("iframe");
@@ -3144,7 +3144,7 @@ var lime_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 676162;
+	this.version = 448526;
 };
 $hxClasses["lime.AssetCache"] = lime_AssetCache;
 lime_AssetCache.__name__ = ["lime","AssetCache"];
