@@ -59,7 +59,7 @@ ApplicationMain.init = function() {
 	if(total == 0) ApplicationMain.start();
 };
 ApplicationMain.main = function() {
-	ApplicationMain.config = { build : "326", company : "VicenteFleitas", file : "CriptomediaWeb", fps : 60, name : "CriptomediaStudios", orientation : "", packageName : "CriptomediaStudios", version : "1.0.0", windows : [{ allowHighDPI : true, antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : "{}", resizable : true, stencilBuffer : true, title : "CriptomediaStudios", vsync : false, width : 0, x : null, y : null}]};
+	ApplicationMain.config = { build : "327", company : "VicenteFleitas", file : "CriptomediaWeb", fps : 60, name : "CriptomediaStudios", orientation : "", packageName : "CriptomediaStudios", version : "1.0.0", windows : [{ allowHighDPI : true, antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : "{}", resizable : true, stencilBuffer : true, title : "CriptomediaStudios", vsync : false, width : 0, x : null, y : null}]};
 };
 ApplicationMain.start = function() {
 	lime_Assets.initialize();
@@ -1830,18 +1830,18 @@ MobileInit.prototype = $extend(openfl_display_Sprite.prototype,{
 	onStage: function(e) {
 		this.removeEventListener("addedToStage",$bind(this,this.onStage));
 		var logo = new openfl_display_Bitmap(openfl_Assets.getBitmapData("img/Logo4.png"));
-		logo.set_scaleX(.3);
-		logo.set_scaleY(.3);
+		logo.set_scaleX(.4);
+		logo.set_scaleY(.4);
 		logo.set_x(0);
 		logo.set_y(0);
 		this.addChild(logo);
 		var iframe = window.document.createElement("iframe");
-		iframe.width = "240";
-		iframe.height = "180";
+		iframe.width = "300";
+		iframe.height = "225";
 		iframe.src = "https://www.youtube.com/embed/Clm_j3-cGYE";
 		var domSprite = new openfl_display_DOMSprite(iframe);
 		domSprite.set_x(0);
-		domSprite.set_y(150);
+		domSprite.set_y(120);
 		this.addChild(domSprite);
 	}
 	,__class__: MobileInit
@@ -3104,7 +3104,7 @@ var lime_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 195845;
+	this.version = 70134;
 };
 $hxClasses["lime.AssetCache"] = lime_AssetCache;
 lime_AssetCache.__name__ = ["lime","AssetCache"];
