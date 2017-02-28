@@ -59,7 +59,7 @@ ApplicationMain.init = function() {
 	if(total == 0) ApplicationMain.start();
 };
 ApplicationMain.main = function() {
-	ApplicationMain.config = { build : "323", company : "VicenteFleitas", file : "CriptomediaWeb", fps : 60, name : "CriptomediaStudios", orientation : "", packageName : "CriptomediaStudios", version : "1.0.0", windows : [{ allowHighDPI : true, antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : "{}", resizable : true, stencilBuffer : true, title : "CriptomediaStudios", vsync : false, width : 0, x : null, y : null}]};
+	ApplicationMain.config = { build : "325", company : "VicenteFleitas", file : "CriptomediaWeb", fps : 60, name : "CriptomediaStudios", orientation : "", packageName : "CriptomediaStudios", version : "1.0.0", windows : [{ allowHighDPI : true, antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : "{}", resizable : true, stencilBuffer : true, title : "CriptomediaStudios", vsync : false, width : 0, x : null, y : null}]};
 };
 ApplicationMain.start = function() {
 	lime_Assets.initialize();
@@ -1830,18 +1830,18 @@ MobileInit.prototype = $extend(openfl_display_Sprite.prototype,{
 	onStage: function(e) {
 		this.removeEventListener("addedToStage",$bind(this,this.onStage));
 		var logo = new openfl_display_Bitmap(openfl_Assets.getBitmapData("img/Logo4.png"));
-		logo.set_scaleX(.5);
-		logo.set_scaleY(.5);
-		logo.set_x(10);
-		logo.set_y(10);
+		logo.set_scaleX(.3);
+		logo.set_scaleY(.3);
+		logo.set_x(5);
+		logo.set_y(5);
 		this.addChild(logo);
 		var iframe = window.document.createElement("iframe");
-		iframe.width = "480";
-		iframe.height = "360";
+		iframe.width = Std.string(this.stage.stageWidth);
+		iframe.height = Std.string(Math.floor(this.stage.stageHeight / 3));
 		iframe.src = "https://www.youtube.com/embed/Clm_j3-cGYE";
 		var domSprite = new openfl_display_DOMSprite(iframe);
 		domSprite.set_x(0);
-		domSprite.set_y(170);
+		domSprite.set_y(150);
 		this.addChild(domSprite);
 	}
 	,__class__: MobileInit
@@ -3104,7 +3104,7 @@ var lime_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 290508;
+	this.version = 644370;
 };
 $hxClasses["lime.AssetCache"] = lime_AssetCache;
 lime_AssetCache.__name__ = ["lime","AssetCache"];
