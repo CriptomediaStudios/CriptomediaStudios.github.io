@@ -59,7 +59,7 @@ ApplicationMain.init = function() {
 	if(total == 0) ApplicationMain.start();
 };
 ApplicationMain.main = function() {
-	ApplicationMain.config = { build : "334", company : "VicenteFleitas", file : "CriptomediaWeb", fps : 60, name : "CriptomediaStudios", orientation : "", packageName : "CriptomediaStudios", version : "1.0.0", windows : [{ allowHighDPI : true, antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : "{}", resizable : true, stencilBuffer : true, title : "CriptomediaStudios", vsync : false, width : 0, x : null, y : null}]};
+	ApplicationMain.config = { build : "335", company : "VicenteFleitas", file : "CriptomediaWeb", fps : 60, name : "CriptomediaStudios", orientation : "", packageName : "CriptomediaStudios", version : "1.0.0", windows : [{ allowHighDPI : true, antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : "{}", resizable : true, stencilBuffer : true, title : "CriptomediaStudios", vsync : false, width : 0, x : null, y : null}]};
 };
 ApplicationMain.start = function() {
 	lime_Assets.initialize();
@@ -1865,6 +1865,15 @@ MobileInit.prototype = $extend(openfl_display_Sprite.prototype,{
 		title_headline.set_x(this.space * 2 + logo_gb.get_width());
 		title_headline.set_y(300);
 		this.addChild(title_headline);
+		var description_headline = new openfl_text_TextField();
+		description_headline.set_defaultTextFormat(new openfl_text_TextFormat("sans-serif",16,16777215));
+		description_headline.set_multiline(true);
+		description_headline.set_text("Have fun creating simple pixelart platform games. Create tiles, items, fully animated characters. Adds functionality to tiles, characters and items. Compose music and sound effects in 8bit or chiptune style. All this without touching a line of code.");
+		description_headline.set_width(310);
+		description_headline.set_height(120);
+		description_headline.set_x(this.space);
+		description_headline.set_y(310);
+		this.addChild(description_headline);
 	}
 	,__class__: MobileInit
 });
@@ -3126,7 +3135,7 @@ var lime_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 591352;
+	this.version = 950783;
 };
 $hxClasses["lime.AssetCache"] = lime_AssetCache;
 lime_AssetCache.__name__ = ["lime","AssetCache"];
