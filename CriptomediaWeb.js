@@ -59,7 +59,7 @@ ApplicationMain.init = function() {
 	if(total == 0) ApplicationMain.start();
 };
 ApplicationMain.main = function() {
-	ApplicationMain.config = { build : "345", company : "VicenteFleitas", file : "CriptomediaWeb", fps : 60, name : "CriptomediaStudios", orientation : "", packageName : "CriptomediaStudios", version : "1.0.0", windows : [{ allowHighDPI : true, antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : "{}", resizable : true, stencilBuffer : true, title : "CriptomediaStudios", vsync : false, width : 0, x : null, y : null}]};
+	ApplicationMain.config = { build : "55", company : "VicenteFleitas", file : "CriptomediaWeb", fps : 60, name : "CriptomediaStudios", orientation : "", packageName : "CriptomediaStudios", version : "1.0.0", windows : [{ allowHighDPI : true, antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : "{}", resizable : true, stencilBuffer : true, title : "CriptomediaStudios", vsync : false, width : 0, x : null, y : null}]};
 };
 ApplicationMain.start = function() {
 	lime_Assets.initialize();
@@ -1602,6 +1602,7 @@ DesktopInit.prototype = $extend(openfl_display_Sprite.prototype,{
 		this.addChild(logo);
 		var title = new openfl_text_TextField();
 		title.setTextFormat(new openfl_text_TextFormat("_sans",28,16777215));
+		title.set_selectable(false);
 		title.set_text("Criptomedia Studios");
 		title.set_width(title.get_textWidth() + 20);
 		title.set_x(this.stage.stageWidth * .5 - title.get_width() * .5);
@@ -1630,6 +1631,7 @@ DesktopInit.prototype = $extend(openfl_display_Sprite.prototype,{
 		this.addChild(logo_gb);
 		var title_headline = new openfl_text_TextField();
 		title_headline.setTextFormat(new openfl_text_TextFormat("_sans",28,16777215));
+		title_headline.set_selectable(false);
 		title_headline.set_text("GoldenBits");
 		title_headline.set_width(title_headline.get_textWidth() + 20);
 		title_headline.set_x(this.stage.stageWidth * .5 - this.width_page * .5 + this.space * 2 + logo_gb.get_width());
@@ -1637,6 +1639,7 @@ DesktopInit.prototype = $extend(openfl_display_Sprite.prototype,{
 		this.addChild(title_headline);
 		var description_headline = new openfl_text_TextField();
 		description_headline.set_defaultTextFormat(new openfl_text_TextFormat("sans-serif",16,16777215));
+		description_headline.set_selectable(false);
 		description_headline.set_multiline(true);
 		description_headline.set_text("Have fun creating simple pixelart platform games. Create tiles, items, fully animated characters. Adds functionality to tiles, characters and items. Compose music and sound effects in 8bit or chiptune style. All this without touching a line of code.");
 		description_headline.set_width(this.width_page * .5 - this.space * 6);
@@ -1665,6 +1668,30 @@ DesktopInit.prototype = $extend(openfl_display_Sprite.prototype,{
 		screenShots.set_x(this.stage.stageWidth * .5 - screenShots.width_mask * .5);
 		screenShots.set_y(512);
 		this.addChild(screenShots);
+		var iframe_gif1 = window.document.createElement("iframe");
+		iframe_gif1.width = "240";
+		iframe_gif1.height = "183";
+		iframe_gif1.src = "https://giphy.com/embed/3o7bu4m7tTiSU1abYc";
+		var domSpriteGif = new openfl_display_DOMSprite(iframe_gif1);
+		domSpriteGif.set_x(this.stage.stageWidth * .5 - this.width_page * .5 + this.space * .5);
+		domSpriteGif.set_y(662);
+		this.addChild(domSpriteGif);
+		var iframe_gif2 = window.document.createElement("iframe");
+		iframe_gif2.width = "183";
+		iframe_gif2.height = "183";
+		iframe_gif2.src = "https://giphy.com/embed/l0IydkXFRHljfuqKk";
+		var domSpriteGif2 = new openfl_display_DOMSprite(iframe_gif2);
+		domSpriteGif2.set_x(this.stage.stageWidth * .5 - 91.5 + this.space);
+		domSpriteGif2.set_y(662);
+		this.addChild(domSpriteGif2);
+		var iframe_gif3 = window.document.createElement("iframe");
+		iframe_gif3.width = "183";
+		iframe_gif3.height = "183";
+		iframe_gif3.src = "https://giphy.com/embed/3o7bu7ryJuNezby3YI";
+		var domSpriteGif3 = new openfl_display_DOMSprite(iframe_gif3);
+		domSpriteGif3.set_x(this.stage.stageWidth * .5 + this.width_page * .5 - 183 - this.space);
+		domSpriteGif3.set_y(662);
+		this.addChild(domSpriteGif3);
 		var foot = new openfl_display_Sprite();
 		foot.get_graphics().beginFill(6783135);
 		foot.get_graphics().drawRect(0,0,this.width_page,60);
@@ -1672,6 +1699,16 @@ DesktopInit.prototype = $extend(openfl_display_Sprite.prototype,{
 		this.addChild(foot);
 		foot.set_x(this.stage.stageWidth * .5 - foot.get_width() * .5);
 		foot.set_y(this.stage.stageHeight - foot.get_height());
+		var FOOTER_text = new openfl_text_TextField();
+		FOOTER_text.set_defaultTextFormat(new openfl_text_TextFormat("sans-serif",16,16777215,null,null,null,null,null,0));
+		FOOTER_text.set_multiline(true);
+		FOOTER_text.set_selectable(false);
+		FOOTER_text.set_text("©2015 Criptomedia Studios  \n\n criptomediagames@gmail.com");
+		FOOTER_text.set_width(FOOTER_text.get_textWidth() + 20);
+		FOOTER_text.set_height(FOOTER_text.get_textHeight());
+		FOOTER_text.set_x(this.stage.stageWidth * .5 - FOOTER_text.get_textWidth() * .5);
+		FOOTER_text.set_y(this.stage.stageHeight - foot.get_height() * .5 - FOOTER_text.get_textHeight() * .4);
+		this.addChild(FOOTER_text);
 	}
 	,__class__: DesktopInit
 });
@@ -3158,7 +3195,7 @@ var lime_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 262445;
+	this.version = 637824;
 };
 $hxClasses["lime.AssetCache"] = lime_AssetCache;
 lime_AssetCache.__name__ = ["lime","AssetCache"];
