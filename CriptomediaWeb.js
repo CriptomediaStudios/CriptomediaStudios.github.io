@@ -59,7 +59,7 @@ ApplicationMain.init = function() {
 	if(total == 0) ApplicationMain.start();
 };
 ApplicationMain.main = function() {
-	ApplicationMain.config = { build : "310", company : "VicenteFleitas", file : "CriptomediaWeb", fps : 60, name : "CriptomediaStudios", orientation : "", packageName : "CriptomediaStudios", version : "1.0.0", windows : [{ allowHighDPI : true, antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : "{}", resizable : true, stencilBuffer : true, title : "CriptomediaStudios", vsync : false, width : 0, x : null, y : null}]};
+	ApplicationMain.config = { build : "67", company : "VicenteFleitas", file : "CriptomediaWeb", fps : 60, name : "CriptomediaStudios", orientation : "", packageName : "CriptomediaStudios", version : "1.0.0", windows : [{ allowHighDPI : true, antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : "{}", resizable : true, stencilBuffer : true, title : "CriptomediaStudios", vsync : false, width : 0, x : null, y : null}]};
 };
 ApplicationMain.start = function() {
 	lime_Assets.initialize();
@@ -1314,97 +1314,25 @@ openfl_display_Sprite.prototype = $extend(openfl_display_DisplayObjectContainer.
 	,__properties__: $extend(openfl_display_DisplayObjectContainer.prototype.__properties__,{get_graphics:"get_graphics"})
 });
 var Main = function() {
-	this.space = 20;
-	this.width_page = 720;
 	openfl_display_Sprite.call(this);
-	var header = new openfl_display_Sprite();
-	header.get_graphics().beginFill(2240831);
-	header.get_graphics().drawRect(0,0,this.width_page,this.stage.stageHeight);
-	header.get_graphics().endFill();
-	this.addChild(header);
-	header.set_x(this.stage.stageWidth * .5 - header.get_width() * .5);
-	header.set_y(0);
-	var logo = new openfl_display_Bitmap(openfl_Assets.getBitmapData("img/Logo4.png"));
-	logo.set_scaleX(.5);
-	logo.set_scaleY(.5);
-	logo.set_x(this.stage.stageWidth * .5 - this.width_page * .5);
-	logo.set_y(0);
-	this.addChild(logo);
-	var title = new openfl_text_TextField();
-	title.setTextFormat(new openfl_text_TextFormat("_sans",28,16777215));
-	title.set_text("Criptomedia Studios");
-	title.set_width(title.get_textWidth() + 20);
-	title.set_x(this.stage.stageWidth * .5 - title.get_width() * .5);
-	title.set_y(80);
-	this.addChild(title);
-	var twitter_btn = new lib_Button(1952511,"t",32,32,"https://twitter.com/criptomedia");
-	twitter_btn.set_x(this.stage.stageWidth * .5 + this.width_page * .5 - twitter_btn._w - this.space);
-	twitter_btn.set_y(90);
-	this.addChild(twitter_btn);
-	var facebook_btn = new lib_Button(3889560,"f",32,32,"https://www.facebook.com/Criptomedia");
-	facebook_btn.set_x(this.stage.stageWidth * .5 + this.width_page * .5 - facebook_btn._w - this.space);
-	facebook_btn.set_y(50);
-	this.addChild(facebook_btn);
-	var body = new openfl_display_Sprite();
-	body.get_graphics().beginFill(3426654);
-	body.get_graphics().drawRect(0,30,this.width_page,this.stage.stageHeight - 90);
-	body.get_graphics().endFill();
-	this.addChild(body);
-	body.set_x(this.stage.stageWidth * .5 - body.get_width() * .5);
-	body.set_y(120);
-	var logo_gb = new openfl_display_Bitmap(openfl_Assets.getBitmapData("img/64.png"));
-	logo_gb.set_scaleX(.5);
-	logo_gb.set_scaleY(.5);
-	logo_gb.set_x(this.stage.stageWidth * .5 - this.width_page * .5 + this.space);
-	logo_gb.set_y(170);
-	this.addChild(logo_gb);
-	var title_headline = new openfl_text_TextField();
-	title_headline.setTextFormat(new openfl_text_TextFormat("_sans",28,16777215));
-	title_headline.set_text("GoldenBits");
-	title_headline.set_width(title_headline.get_textWidth() + 20);
-	title_headline.set_x(this.stage.stageWidth * .5 - this.width_page * .5 + this.space * 2 + logo_gb.get_width());
-	title_headline.set_y(170);
-	this.addChild(title_headline);
-	var description_headline = new openfl_text_TextField();
-	description_headline.set_defaultTextFormat(new openfl_text_TextFormat("sans-serif",16,16777215));
-	description_headline.set_multiline(true);
-	description_headline.set_text("Have fun creating simple pixelart platform games. Create tiles, items, fully animated characters. Adds functionality to tiles, characters and items. Compose music and sound effects in 8bit or chiptune style. All this without touching a line of code.");
-	description_headline.set_width(this.width_page * .5 - this.space * 6);
-	description_headline.set_height(200);
-	description_headline.set_x(this.stage.stageWidth * .5 - 360. + this.space);
-	description_headline.set_y(210);
-	this.addChild(description_headline);
-	var greenlight_bitmap = new openfl_display_Bitmap(openfl_Assets.getBitmapData("img/Greenlight.png"));
-	var greenlight_btn = new openfl_display_Sprite();
-	greenlight_btn.buttonMode = true;
-	greenlight_btn.addChild(greenlight_bitmap);
-	greenlight_btn.set_scaleX(.7);
-	greenlight_btn.set_scaleY(.7);
-	greenlight_btn.set_x(this.stage.stageWidth * .5 - this.width_page * .5 + this.space);
-	greenlight_btn.set_y(400);
-	this.addChild(greenlight_btn);
-	var iframe = window.document.createElement("iframe");
-	iframe.width = "420";
-	iframe.height = "315";
-	iframe.src = "https://www.youtube.com/embed/A5n1nx8Yr7U";
-	var domSprite = new openfl_display_DOMSprite(iframe);
-	domSprite.set_x(this.stage.stageWidth * .5 - (420 - this.width_page * .5) - this.space);
-	domSprite.set_y(170);
-	this.addChild(domSprite);
-	var screenShots = new lib_ScreenScroll();
-	screenShots.set_x(this.stage.stageWidth * .5 - screenShots.width_mask * .5);
-	screenShots.set_y(512);
-	this.addChild(screenShots);
-	var foot = new openfl_display_Sprite();
-	foot.get_graphics().beginFill(6783135);
-	foot.get_graphics().drawRect(0,0,this.width_page,60);
-	foot.get_graphics().endFill();
-	this.addChild(foot);
-	foot.set_x(this.stage.stageWidth * .5 - foot.get_width() * .5);
-	foot.set_y(this.stage.stageHeight - foot.get_height());
+	if(Main.getBrowserType() == "MOBILE") {
+		var webpage = new MobileInit();
+		this.addChild(webpage);
+	} else {
+		var webpage1 = new DesktopInit();
+		this.addChild(webpage1);
+	}
 };
 $hxClasses["Main"] = Main;
 Main.__name__ = ["Main"];
+Main.getBrowserType = function() {
+	var browserType = "Undefined";
+	var browserAgent = window.navigator.userAgent;
+	if(browserAgent != null) {
+		if(browserAgent.indexOf("Android") >= 0 || browserAgent.indexOf("BlackBerry") >= 0 || browserAgent.indexOf("iPhone") >= 0 || browserAgent.indexOf("iPad") >= 0 || browserAgent.indexOf("iPod") >= 0 || browserAgent.indexOf("Opera Mini") >= 0 || browserAgent.indexOf("IEMobile") >= 0) browserType = "MOBILE"; else browserType = "DESKTOP";
+	}
+	return browserType;
+};
 Main.__super__ = openfl_display_Sprite;
 Main.prototype = $extend(openfl_display_Sprite.prototype,{
 	__class__: Main
@@ -1647,6 +1575,147 @@ DefaultAssetLibrary.prototype = $extend(lime_AssetLibrary.prototype,{
 	}
 	,__class__: DefaultAssetLibrary
 });
+var DesktopInit = function() {
+	this.space = 20;
+	this.width_page = 720;
+	openfl_display_Sprite.call(this);
+	this.addEventListener("addedToStage",$bind(this,this.onStage));
+};
+$hxClasses["DesktopInit"] = DesktopInit;
+DesktopInit.__name__ = ["DesktopInit"];
+DesktopInit.__super__ = openfl_display_Sprite;
+DesktopInit.prototype = $extend(openfl_display_Sprite.prototype,{
+	onStage: function(e) {
+		this.removeEventListener("addedToStage",$bind(this,this.onStage));
+		var header = new openfl_display_Sprite();
+		header.get_graphics().beginFill(2240831);
+		header.get_graphics().drawRect(0,0,this.width_page,this.stage.stageHeight);
+		header.get_graphics().endFill();
+		this.addChild(header);
+		header.set_x(this.stage.stageWidth * .5 - header.get_width() * .5);
+		header.set_y(0);
+		var logo = new openfl_display_Bitmap(openfl_Assets.getBitmapData("img/Logo4.png"));
+		logo.set_scaleX(.5);
+		logo.set_scaleY(.5);
+		logo.set_x(this.stage.stageWidth * .5 - this.width_page * .5);
+		logo.set_y(0);
+		this.addChild(logo);
+		var title = new openfl_text_TextField();
+		title.setTextFormat(new openfl_text_TextFormat("_sans",28,16777215));
+		title.set_selectable(false);
+		title.set_text("Criptomedia Studios");
+		title.set_width(title.get_textWidth() + 20);
+		title.set_x(this.stage.stageWidth * .5 - title.get_width() * .5);
+		title.set_y(80);
+		this.addChild(title);
+		var twitter_btn = new lib_Button(1952511,"t",32,32,"https://twitter.com/criptomedia");
+		twitter_btn.set_x(this.stage.stageWidth * .5 + this.width_page * .5 - twitter_btn._w - this.space);
+		twitter_btn.set_y(90);
+		this.addChild(twitter_btn);
+		var facebook_btn = new lib_Button(3889560,"f",32,32,"https://www.facebook.com/Criptomedia");
+		facebook_btn.set_x(this.stage.stageWidth * .5 + this.width_page * .5 - facebook_btn._w - this.space);
+		facebook_btn.set_y(50);
+		this.addChild(facebook_btn);
+		var body = new openfl_display_Sprite();
+		body.get_graphics().beginFill(3426654);
+		body.get_graphics().drawRect(0,30,this.width_page,this.stage.stageHeight - 90);
+		body.get_graphics().endFill();
+		this.addChild(body);
+		body.set_x(this.stage.stageWidth * .5 - body.get_width() * .5);
+		body.set_y(120);
+		var logo_gb = new openfl_display_Bitmap(openfl_Assets.getBitmapData("img/64.png"));
+		logo_gb.set_scaleX(.5);
+		logo_gb.set_scaleY(.5);
+		logo_gb.set_x(this.stage.stageWidth * .5 - this.width_page * .5 + this.space);
+		logo_gb.set_y(170);
+		this.addChild(logo_gb);
+		var title_headline = new openfl_text_TextField();
+		title_headline.setTextFormat(new openfl_text_TextFormat("_sans",28,16777215));
+		title_headline.set_selectable(false);
+		title_headline.set_text("GoldenBits");
+		title_headline.set_width(title_headline.get_textWidth() + 20);
+		title_headline.set_x(this.stage.stageWidth * .5 - this.width_page * .5 + this.space * 2 + logo_gb.get_width());
+		title_headline.set_y(170);
+		this.addChild(title_headline);
+		var description_headline = new openfl_text_TextField();
+		description_headline.set_defaultTextFormat(new openfl_text_TextFormat("sans-serif",16,16777215));
+		description_headline.set_selectable(false);
+		description_headline.set_multiline(true);
+		description_headline.set_text("Have fun creating simple pixelart platform games. Create tiles, items, fully animated characters. Adds functionality to tiles, characters and items. Compose music and sound effects in 8bit or chiptune style. All this without touching a line of code.");
+		description_headline.set_width(this.width_page * .5 - this.space * 6);
+		description_headline.set_height(200);
+		description_headline.set_x(this.stage.stageWidth * .5 - 360. + this.space);
+		description_headline.set_y(210);
+		this.addChild(description_headline);
+		var greenlight_bitmap = new openfl_display_Bitmap(openfl_Assets.getBitmapData("img/Greenlight.png"));
+		var greenlight_btn = new openfl_display_Sprite();
+		greenlight_btn.buttonMode = true;
+		greenlight_btn.addChild(greenlight_bitmap);
+		greenlight_btn.set_scaleX(.7);
+		greenlight_btn.set_scaleY(.7);
+		greenlight_btn.set_x(this.stage.stageWidth * .5 - this.width_page * .5 + this.space);
+		greenlight_btn.set_y(400);
+		this.addChild(greenlight_btn);
+		greenlight_btn.addEventListener("mouseUp",$bind(this,this.mouseReleaseGB));
+		var iframe = window.document.createElement("iframe");
+		iframe.width = "420";
+		iframe.height = "315";
+		iframe.src = "https://www.youtube.com/embed/Clm_j3-cGYE";
+		var domSprite = new openfl_display_DOMSprite(iframe);
+		domSprite.set_x(this.stage.stageWidth * .5 - (420 - this.width_page * .5) - this.space);
+		domSprite.set_y(170);
+		this.addChild(domSprite);
+		var screenShots = new lib_ScreenScroll();
+		screenShots.set_x(this.stage.stageWidth * .5 - screenShots.width_mask * .5);
+		screenShots.set_y(512);
+		this.addChild(screenShots);
+		var iframe_gif1 = window.document.createElement("iframe");
+		iframe_gif1.width = "240";
+		iframe_gif1.height = "183";
+		iframe_gif1.src = "https://giphy.com/embed/3o7bu4m7tTiSU1abYc";
+		var domSpriteGif = new openfl_display_DOMSprite(iframe_gif1);
+		domSpriteGif.set_x(this.stage.stageWidth * .5 - this.width_page * .5 + this.space * .5);
+		domSpriteGif.set_y(662);
+		this.addChild(domSpriteGif);
+		var iframe_gif2 = window.document.createElement("iframe");
+		iframe_gif2.width = "183";
+		iframe_gif2.height = "183";
+		iframe_gif2.src = "https://giphy.com/embed/l0IydkXFRHljfuqKk";
+		var domSpriteGif2 = new openfl_display_DOMSprite(iframe_gif2);
+		domSpriteGif2.set_x(this.stage.stageWidth * .5 - 91.5 + this.space);
+		domSpriteGif2.set_y(662);
+		this.addChild(domSpriteGif2);
+		var iframe_gif3 = window.document.createElement("iframe");
+		iframe_gif3.width = "183";
+		iframe_gif3.height = "183";
+		iframe_gif3.src = "https://giphy.com/embed/3o7bu7ryJuNezby3YI";
+		var domSpriteGif3 = new openfl_display_DOMSprite(iframe_gif3);
+		domSpriteGif3.set_x(this.stage.stageWidth * .5 + this.width_page * .5 - 183 - this.space);
+		domSpriteGif3.set_y(662);
+		this.addChild(domSpriteGif3);
+		var foot = new openfl_display_Sprite();
+		foot.get_graphics().beginFill(6783135);
+		foot.get_graphics().drawRect(0,0,this.width_page,60);
+		foot.get_graphics().endFill();
+		this.addChild(foot);
+		foot.set_x(this.stage.stageWidth * .5 - foot.get_width() * .5);
+		foot.set_y(this.stage.stageHeight - foot.get_height());
+		var FOOTER_text = new openfl_text_TextField();
+		FOOTER_text.set_defaultTextFormat(new openfl_text_TextFormat("sans-serif",16,16777215,null,null,null,null,null,0));
+		FOOTER_text.set_multiline(true);
+		FOOTER_text.set_selectable(false);
+		FOOTER_text.set_text("©2015 Criptomedia Studios  \n\n criptomediagames@gmail.com");
+		FOOTER_text.set_width(FOOTER_text.get_textWidth() + 20);
+		FOOTER_text.set_height(FOOTER_text.get_textHeight());
+		FOOTER_text.set_x(this.stage.stageWidth * .5 - FOOTER_text.get_textWidth() * .5);
+		FOOTER_text.set_y(this.stage.stageHeight - foot.get_height() * .5 - FOOTER_text.get_textHeight() * .4);
+		this.addChild(FOOTER_text);
+	}
+	,mouseReleaseGB: function(e) {
+		openfl_Lib.getURL(new openfl_net_URLRequest("http://steamcommunity.com/sharedfiles/filedetails/?id=881034264"),"_blank");
+	}
+	,__class__: DesktopInit
+});
 var EReg = function(r,opt) {
 	opt = opt.split("u").join("");
 	this.r = new RegExp(r,opt);
@@ -1791,6 +1860,81 @@ _$List_ListIterator.prototype = {
 	,__class__: _$List_ListIterator
 };
 Math.__name__ = ["Math"];
+var MobileInit = function() {
+	this.space = 5;
+	openfl_display_Sprite.call(this);
+	this.addEventListener("addedToStage",$bind(this,this.onStage));
+};
+$hxClasses["MobileInit"] = MobileInit;
+MobileInit.__name__ = ["MobileInit"];
+MobileInit.__super__ = openfl_display_Sprite;
+MobileInit.prototype = $extend(openfl_display_Sprite.prototype,{
+	onStage: function(e) {
+		this.removeEventListener("addedToStage",$bind(this,this.onStage));
+		var logo = new openfl_display_Bitmap(openfl_Assets.getBitmapData("img/Logo4.png"));
+		logo.set_scaleX(.4);
+		logo.set_scaleY(.4);
+		logo.set_x(-5);
+		logo.set_y(-10);
+		this.addChild(logo);
+		var insta_btn = new lib_Button(0,"i",32,32,"https://www.instagram.com/criptomediastudios");
+		insta_btn.set_x(190);
+		insta_btn.set_y(10);
+		this.addChild(insta_btn);
+		var facebook_btn = new lib_Button(3889560,"f",32,32,"https://www.facebook.com/Criptomedia");
+		facebook_btn.set_x(230);
+		facebook_btn.set_y(10);
+		this.addChild(facebook_btn);
+		var twitter_btn = new lib_Button(1952511,"t",32,32,"https://twitter.com/criptomedia");
+		twitter_btn.set_x(270);
+		twitter_btn.set_y(10);
+		this.addChild(twitter_btn);
+		var greenlight_bitmap = new openfl_display_Bitmap(openfl_Assets.getBitmapData("img/Greenlight.png"));
+		var greenlight_btn = new openfl_display_Sprite();
+		greenlight_btn.buttonMode = true;
+		greenlight_btn.addChild(greenlight_bitmap);
+		greenlight_btn.set_scaleX(.5);
+		greenlight_btn.set_scaleY(.5);
+		greenlight_btn.set_x(150);
+		greenlight_btn.set_y(40);
+		this.addChild(greenlight_btn);
+		greenlight_btn.addEventListener("mouseUp",$bind(this,this.mouseReleaseGB));
+		var iframe = window.document.createElement("iframe");
+		iframe.width = "310";
+		iframe.height = "180";
+		iframe.src = "https://www.youtube.com/embed/Clm_j3-cGYE";
+		var domSprite = new openfl_display_DOMSprite(iframe);
+		domSprite.set_x(0);
+		domSprite.set_y(100);
+		this.addChild(domSprite);
+		var logo_gb = new openfl_display_Bitmap(openfl_Assets.getBitmapData("img/64.png"));
+		logo_gb.set_scaleX(.5);
+		logo_gb.set_scaleY(.5);
+		logo_gb.set_x(this.space);
+		logo_gb.set_y(290);
+		this.addChild(logo_gb);
+		var title_headline = new openfl_text_TextField();
+		title_headline.setTextFormat(new openfl_text_TextFormat("_sans",28,16777215));
+		title_headline.set_text("GoldenBits");
+		title_headline.set_width(title_headline.get_textWidth() + 20);
+		title_headline.set_x(this.space * 2 + logo_gb.get_width());
+		title_headline.set_y(293);
+		this.addChild(title_headline);
+		var description_headline = new openfl_text_TextField();
+		description_headline.set_defaultTextFormat(new openfl_text_TextFormat("sans-serif",16,16777215));
+		description_headline.set_multiline(true);
+		description_headline.set_text("Have fun creating simple pixelart platform games. Create tiles, items, fully animated characters. Adds functionality to tiles, characters and items. Compose music and sound effects in 8bit or chiptune style. All this without touching a line of code.");
+		description_headline.set_width(310);
+		description_headline.set_height(140);
+		description_headline.set_x(this.space);
+		description_headline.set_y(323);
+		this.addChild(description_headline);
+	}
+	,mouseReleaseGB: function(e) {
+		openfl_Lib.getURL(new openfl_net_URLRequest("http://steamcommunity.com/sharedfiles/filedetails/?id=881034264"),"_blank");
+	}
+	,__class__: MobileInit
+});
 var NMEPreloader = function() {
 	openfl_display_Sprite.call(this);
 	var backgroundColor = this.getBackgroundColor();
@@ -2986,9 +3130,19 @@ lib_Button.__super__ = openfl_display_Sprite;
 lib_Button.prototype = $extend(openfl_display_Sprite.prototype,{
 	onStage: function(e) {
 		this.removeEventListener("addedToStage",$bind(this,this.onStage));
-		this.get_graphics().beginFill(this.color);
-		this.get_graphics().drawRoundRect(0,0,this._w,this._h,5,5);
-		this.get_graphics().endFill();
+		if(this.str == "i") {
+			this.get_graphics().beginFill(this.color);
+			this.get_graphics().lineStyle(2,16777215);
+			this.get_graphics().drawRoundRect(0,0,this._w,this._h,10,10);
+			this.get_graphics().drawCircle(this._w * .5,this._h * .5,8);
+			this.get_graphics().drawCircle(26,7,2);
+			this.get_graphics().endFill();
+			this.str = "";
+		} else {
+			this.get_graphics().beginFill(this.color);
+			this.get_graphics().drawRoundRect(0,0,this._w,this._h,5,5);
+			this.get_graphics().endFill();
+		}
 		this.buttonMode = true;
 		var title = new openfl_text_TextField();
 		title.set_selectable(false);
@@ -3049,7 +3203,7 @@ var lime_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 447464;
+	this.version = 68115;
 };
 $hxClasses["lime.AssetCache"] = lime_AssetCache;
 lime_AssetCache.__name__ = ["lime","AssetCache"];
