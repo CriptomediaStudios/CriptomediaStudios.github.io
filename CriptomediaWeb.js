@@ -59,7 +59,7 @@ ApplicationMain.init = function() {
 	if(total == 0) ApplicationMain.start();
 };
 ApplicationMain.main = function() {
-	ApplicationMain.config = { build : "70", company : "VicenteFleitas", file : "CriptomediaWeb", fps : 60, name : "CriptomediaStudios", orientation : "", packageName : "CriptomediaStudios", version : "1.0.0", windows : [{ allowHighDPI : true, antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : "{}", resizable : true, stencilBuffer : true, title : "CriptomediaStudios", vsync : false, width : 0, x : null, y : null}]};
+	ApplicationMain.config = { build : "74", company : "VicenteFleitas", file : "CriptomediaWeb", fps : 60, name : "CriptomediaStudios", orientation : "", packageName : "CriptomediaStudios", version : "1.0.0", windows : [{ allowHighDPI : true, antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, hidden : null, maximized : null, minimized : null, parameters : "{}", resizable : true, stencilBuffer : true, title : "CriptomediaStudios", vsync : false, width : 0, x : null, y : null}]};
 };
 ApplicationMain.start = function() {
 	lime_Assets.initialize();
@@ -1712,7 +1712,7 @@ DesktopInit.prototype = $extend(openfl_display_Sprite.prototype,{
 		this.addChild(FOOTER_text);
 	}
 	,mouseReleaseGB: function(e) {
-		openfl_Lib.getURL(new openfl_net_URLRequest("http://steamcommunity.com/sharedfiles/filedetails/?id=881034264"),"_blank");
+		openfl_Lib.getURL(new openfl_net_URLRequest("http://steamcommunity.com/sharedfiles/filedetails/?id=881034264&searchtext=GoldenBits"),"_blank");
 	}
 	,__class__: DesktopInit
 });
@@ -1931,7 +1931,7 @@ MobileInit.prototype = $extend(openfl_display_Sprite.prototype,{
 		this.addChild(description_headline);
 	}
 	,mouseReleaseGB: function(e) {
-		openfl_Lib.getURL(new openfl_net_URLRequest("http://steamcommunity.com/sharedfiles/filedetails/?id=881034264"),"_blank");
+		openfl_Lib.getURL(new openfl_net_URLRequest("http://steamcommunity.com/sharedfiles/filedetails/?id=881034264&searchtext=GoldenBits"),"_blank");
 	}
 	,__class__: MobileInit
 });
@@ -3203,7 +3203,7 @@ var lime_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 53950;
+	this.version = 644539;
 };
 $hxClasses["lime.AssetCache"] = lime_AssetCache;
 lime_AssetCache.__name__ = ["lime","AssetCache"];
