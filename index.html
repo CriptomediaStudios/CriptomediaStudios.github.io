@@ -1,44 +1,309 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-	
 	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	
-	<title>CriptomediaStudios</title>
-	
-	<meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	
-	
-	<script type="text/javascript" src="./lib/pako.min.js"></script>
-	<script type="text/javascript" src="./lib/soundjs.min.js"></script>
-	<script type="text/javascript" src="./CriptomediaWeb.js"></script>
-	
-	<script>
-		window.addEventListener ("touchmove", function (event) { event.preventDefault (); }, false);
-		if (typeof window.devicePixelRatio != 'undefined' && window.devicePixelRatio > 2) {
-			var meta = document.getElementById ("viewport");
-			meta.setAttribute ('content', 'width=device-width, initial-scale=' + (2 / window.devicePixelRatio) + ', user-scalable=no');
-		}
-	</script>
-	
-	<style>
-		html,body { margin: 0; padding: 0; height: 100%; overflow: hidden; }
-		#openfl-content { background: #000000; width: 100%; height: 100%; }
-		
-	</style>
-	
+	<title>Golden8bits</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body style="margin-top: 50px;">
 	
-	<noscript>This webpage makes extensive use of JavaScript. Please enable JavaScript in your web browser to view this page.</noscript>
-	
-	<div id="openfl-content"></div>
-	
-	<script type="text/javascript">
-		lime.embed ("openfl-content", 0, 0, "000000");
-	</script>
-	
+		<header>
+			<nav class="navbar navbar-default navbar-fixed-top">
+				<div class="container">
+					<!-- Boton menu para mobile -->
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar1">
+							<span class="sr-only">Menu</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a href="#" class="navbar-brand" style="margin: -5px 0px 0px 0px;">
+							<img width="32" class="img-thumbnail" src="img/golden8bits icon 64x64.png" alt="">
+						</a>
+					</div>
+					<!-- Contenido de la barra menu -->
+					<div class="collapse navbar-collapse" id="navbar1">
+						<ul class="nav navbar-nav">
+							<li><a href="#about">About</a></li>
+							<li class="dropdown">
+								<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button">Manual <span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li><a href="#interface">Interface</a></li>
+									<li class="divider"></li>
+									<li><a href="#pixeleditor">Pixel Editor</a></li>
+									<li><a href="#animator">Animator</a></li>
+									<li><a href="#texteditor">Text Editor</a></li>
+									<li><a href="#assetslib">Assets Lib</a></li>
+									<li><a href="#leveleditor">Level Design</a></li>
+								</ul>
+							</li>
+							<li><a href="#blog">Blog</a></li>
+						</ul>
+
+						<ul class="nav navbar-nav navbar-right" style="padding-top: 10px">
+							<a href="https://www.facebook.com/Criptomedia/">
+								<i class="fa fa-facebook-official" style="font-size:2em;"></i>
+							</a>
+							<a href="https://twitter.com/Criptomedia">
+								<i class="fa fa-twitter" style="padding-left:10px; font-size:2em;"></i>
+							</a>
+							<a href="https://www.instagram.com/criptomediastudios/">
+								<i class="fa fa-instagram" style="padding-left:10px; font-size:2em;"></i>
+							</a>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</header>
+
+		<div class="container">
+			<div class="row" style="margin: 0px -15px 0px -15px">
+				<div class="col-md-12">
+					<div class="carousel slide" id="carousel1" data-ride="carousel">
+						<!-- Indicadores -->
+						<ol class="carousel-indicators">
+							<li data-target="#carousel1" data-slide="0" class="active"></li>
+							<li data-target="#carousel1" data-slide="1"></li>
+							<li data-target="#carousel1" data-slide="2"></li>
+						</ol>
+						<!-- Contenido de los slides-->
+						<div class="carousel-inner" role="listbox">
+							<div class="item active">
+								<img class="img-responsive" src="img/golden8bits splash.png" alt="">
+							</div>
+							<div class="item">
+								<img class="img-responsive" src="img/golden8bits editor.png" alt="">
+							</div>
+							<div class="item">
+								<img class="img-responsive" src="img/golden8bits game.png" alt="">
+							</div>
+						</div>	
+						<!-- Controles -->
+						<a href="#carousel1" class="left carousel-control" role="button" data-slide="prev">
+							<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+							<span class="sr-only">Anterior</span>
+						</a>
+
+						<a href="#carousel1" class="right carousel-control" role="button" data-slide="next">
+							<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+							<span class="sr-only">Siguiente</span>
+						</a>
+					</div>
+				</div>
+			</div>
+			
+			<div class="main row" id="about">
+			<br>
+				<article class="col-xs-12 col-sm-12 col-md-6">
+					<p>
+						<h1 class="page-header">Golden8bits <small>Fantasy Console</small></h1>
+						<p class="text-muted text-justify"><img style="float:left; padding-right: 10px;" class="img-responsive" src="img/golden8bits icon 64x64.png" alt="">Golden8Bits is a software that offers a simple and intuitive interface, where users can create a video game without touching a line of code, abstracting from the process of integrating multiple work platforms.</p>  
+						<p class="text-muted text-justify">The software includes the possibility of creating graphics, levels, animations and we are working to add music / sound creation too; all in the same environment. No programming knowledge is needed.</p>
+						<p class="text-muted text-justify">We always wanted to have a comprehensive tool to channel our ideas in a fast and fun way without having to resort to several softwares, from there the idea of ​​golden8bits was born. A development environment for everything. We do not aim to compete with big development engines, but give the possibility to quickly create a sketch, mockup of a pixelart 8bits style game.</p>
+						<p class="text-muted text-justify">Create a video game entirely without touching a line of code! </p>
+					</p>
+				</article>
+				<aside class="col-xs-12 col-sm-12 col-md-6">
+					<br>
+					<br>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4><span class="glyphicon glyphicon-film"></span> Trailer</h4>
+						</div>
+						<div class="panel-body">
+							<div class="embed-responsive embed-responsive-16by9">
+							  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Zfuf5PeWaJs" allowfullscreen></iframe>
+							</div>
+						</div>
+					</div>
+					
+				</aside>
+			</div>
+
+			<div class="manual row" id="interface">
+				<br>
+				<div class="col-md-12">
+					<h1 class="page-header">Manual <small>Brief Instructions</small></h1>
+				</div>
+				<!-- Interface manual -->
+				<article class="col-xs-12 col-sm-12 col-md-6">
+					<div class="panel panel-success">
+						<div class="panel-heading">
+							<div class="media">
+								<div class="media-left"><img width="64" class="img-rounded" src="img/pixel shield.png" alt=""></div>
+								<div class="media-body"><h3>Interface</h3></div>
+							</div>
+						</div>
+						<div class="panel-body">
+							<img id="interfaceImg" src="img/g8b user interface.png" class="img-responsive">
+							<caption>
+								The edit mode have 5 primary windows.
+								<ol>
+									<li>Level editor</li>
+									<li>Pixel editor</li>
+									<li>Animator</li>
+									<li>Text editor</li>
+									<li>Assets lib</li>
+								</ol>
+							</caption>
+						</div>
+						<div class="panel-footer">Manual 1/6</div>
+					</div>
+				</article>
+				<!-- Level Design manual -->
+				<article class="col-xs-12 col-sm-12 col-md-6">
+					<div class="panel panel-success">
+						<div class="panel-heading">
+							<div class="media">
+								<div class="media-left"><img width="64" class="img-rounded" src="img/level editor icon.png" alt=""></div>
+								<div id="leveleditor" class="media-body"><h3>Level Editor</h3></div>
+							</div>
+						</div>
+						<div class="panel-body">
+							<img id="" src="img/level editor window.png" class="img-responsive">
+							<caption>The first window is the level editor, its top bar have several buttons.</caption>
+						</div>
+						<div class="panel-body">
+							<ol>
+								<li><p><img src="img/level item entity btn.png" alt=""> These buttons change the type of tiles.</p></li>
+								<li><p><img  src="img/play btn.png" alt=""> Click to test the current level.</p></li>
+								<li><p><img  src="img/bg-color icon.png" alt=""> Open a color picker to change the background color.</p></li>
+								<li><p><img  src="img/level bar.png" alt=""> On this bar you can switch between levels and create new ones.</p></li>
+								<li><p><img  src="img/save icon.png" alt=""> Save your current level change.</p></li>
+								<li><p><img  src="img/scroll icon.png" alt=""> While this button is active you can drag the level upwards, downwards, forwards and backwards.</p></li>
+								<li><p><img  src="img/delete level icon.png" alt=""> Delete the current level.</p></li>
+							</ol>
+						</div>
+						<div class="panel-body">
+							<img id="" src="img/level paint.gif" class="img-responsive">
+							<caption>To paint tiles on the level just press the left mouse button. Erase the tile with the right mouse button.</caption>
+						</div>
+						<div class="panel-footer">Manual 2/6</div>
+					</div>
+				</article>
+				<!-- PixelEditor manual -->
+				<article class="col-xs-12 col-sm-12 col-md-6">
+					<div class="panel panel-success">
+						<div class="panel-heading">
+							<div class="media">
+								<div class="media-left"><img width="64" class="img-rounded" src="img/pixel heal.png" alt=""></div>
+								<div id="pixeleditor" class="media-body"><h3>Pixel Editor</h3></div>
+							</div>
+						</div>
+						<div class="panel-body">
+							<p>We are working in a full pdf manual so everyone can start right away creating games on golden8bits fantasy console.</p>
+						</div>
+						<div class="panel-body">
+							<p>Here you will read all about the pixel editor and how to used it with the other components in g8b.</p>
+						</div>
+						<div class="panel-footer">Manual 3/6</div>
+					</div>
+				</article>
+				<!-- Animator manual -->
+				<article class="col-xs-12 col-sm-12 col-md-6">
+					<div class="panel panel-success">
+						<div class="panel-heading">
+							<div class="media">
+								<div class="media-left"><img width="64" class="img-rounded" src="img/pixel skull.png" alt=""></div>
+								<div id="animator" class="media-body"><h3>Animator</h3></div>
+							</div>
+						</div>
+						<div class="panel-body">
+							<p>We are working in a full pdf manual so everyone can start right away creating games on golden8bits fantasy console.</p>
+						</div>
+						<div class="panel-body">
+							<p>Here you will read all about the animator window and how to used it with the other components in g8b.</p>
+						</div>
+						<div class="panel-footer">Manual 4/6</div>
+					</div>
+				</article>
+				<!-- TextEditor manual -->
+				<article class="col-xs-12 col-sm-12 col-md-6">
+					<div class="panel panel-success">
+						<div class="panel-heading">
+							<div class="media">
+								<div class="media-left"><img width="64" class="img-rounded" src="img/pixel sword.png" alt=""></div>
+								<div id="texteditor" class="media-body"><h3>Text Editor</h3></div>
+							</div>
+						</div>
+						<div class="panel-body">
+							<p>We are working in a full pdf manual so everyone can start right away creating games on golden8bits fantasy console.</p>
+						</div>
+						<div class="panel-body">
+							<p>Here you will read all about the text editor and how to used it with the other components in g8b.</p>
+						</div>
+						<div class="panel-footer">Manual 5/6</div>
+					</div>
+				</article>
+				<!-- Assets Lib manual -->
+				<article class="col-xs-12 col-sm-12 col-md-6">
+					<div class="panel panel-success">
+						<div class="panel-heading">
+							<div class="media">
+								<div class="media-left"><img width="64" class="img-rounded" src="img/pixel heal.png" alt=""></div>
+								<div id="assetslib" class="media-body"><h3>Assets Lib</h3></div>
+							</div>
+						</div>
+						<div class="panel-body">
+							<p>We are working in a full pdf manual so everyone can start right away creating games on golden8bits fantasy console.</p>
+						</div>
+						<div class="panel-body">
+							<p>Here you will read all about the assets lib window and how to used it with the other components in g8b.</p>
+						</div>
+						<div class="panel-footer">Manual 6/6</div>
+					</div>
+				</article>
+			</div>
+
+			<div class="blog row" id="blog">
+				<br>
+				<!-- Blog header -->
+				<div class="col-md-12">
+					<h1 class="page-header">Blog <small>Daily Notes</small></h1>
+				</div>
+				<!-- 15 03 18 -->
+				<div class="color1 col-xs-12 col-sm-12 col-md-6">
+					<img class="img-responsive" src="img/Dark level g8b.png" alt="">
+					<p>
+						<h1>Final levels</h1>
+						<p>Now that we have a beta of g8b our new goal is to create a little game on the fantasy console with a lot of levels, characters and items. This will make a easy learn curve for the user. To look at the mechanics and already entities created, thats what we hope.</p>
+						<br>
+						<small class="pull-right">15 03 18</small>
+					</p>
+				</div>
+				<!-- 14 03 18 -->
+				<div class="col-xs-12 col-sm-12 col-md-6">
+					<p>
+						<h1>Trying new tiles</h1>
+						<p>Pixel by pixel the fire level its finally here. I just need more enemies for this part of the map and all will be good to go!. <br><br>We still dont know if the fire theme will be the final theme (green, rocks, dark, fire). Maybe an hour of game play is what it takes to show all mechanics that can be created on g8b. <br><br>Looking forward now finally for music composition, sound effects and maybe a new intro for the game trailer.</p>
+						
+					</p>
+					<img class="img-responsive" src="img/Fire level g8b.png" alt="">
+					<br>
+					<small class="pull-right">14 03 18</small>
+				</div>
+			</div>
+		</div>
+
+	<footer>
+		<div class="container-fluid">
+			<figure style="position: relative; overflow: hidden;"> 
+				<img src="img/pie de pagina g8b.png" class="">
+				<div style=" position: absolute; right: 1%; bottom: 1%;">
+					<div class="panel panel-default" style="padding: 10px 10px;">
+						<p><strong>Contact:</strong> criptomediagames@gmail.com</p>
+						<a href="#"></a>
+					</div>
+				</div>
+			</figure>
+		</div>
+	</footer>
+
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </body>
 </html>

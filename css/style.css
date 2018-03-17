@@ -1,0 +1,38 @@
+.navbar
+{
+    margin-bottom: 0px;
+}
+.carousel-inner
+{
+    background: #000;
+}
+.carousel-inner > .item > img 
+{
+    margin: 0 auto;
+}
+.main
+{
+	background: #fff;
+    margin-top: 10px;
+}
+.manual
+{
+
+}
+.blog
+{
+	background: #fff;
+}
+p
+{
+    font-size:1.2em;
+}
+footer
+{
+    background: #535c68;
+    margin: 0px -20px 0px -20px;
+}
+#interfaceImg:hover
+{
+	content: url('../img/golden8bits editor.png');
+}
