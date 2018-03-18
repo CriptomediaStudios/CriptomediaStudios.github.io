@@ -36,3 +36,7 @@ footer
 {
 	content: url('../img/golden8bits editor.png');
 }
+#splashImg:hover
+{
+    content: url('../img/golden8bits splash.png');
+}
